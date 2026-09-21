@@ -1,259 +1,473 @@
-# MarvelCode Site Architecture
+# MarvelCode System Architecture
 
-**Status:** Proposed baseline architecture  
-**Repository:** `Marvellarr/marvellcode_brand_designs`  
-**Audience:** Product, design, and engineering collaborators
+**Status:** Pre-development architecture  
+**Purpose:** Structure the system before implementation begins  
+**Scope:** Product domains, application boundaries, data flow, permissions, APIs, and delivery sequencing
 
-## 1. Executive Summary
+## 1. Architectural Intent
 
-The repository currently contains the MarvelCode visual system, reference imagery, and several standalone HTML mockups. It does not yet contain a production application, build pipeline, shared component library, or persistent backend. The recommended architecture turns those assets into one coherent web product with three clearly separated surfaces:
+This document defines the structure of the MarvelCode system before coding begins. It is intentionally independent of visual references, mockups, colors, typography, and frontend presentation. The implementation team should use this document to decide what to build, where each responsibility belongs, how modules communicate, and how the product can evolve without a large rewrite.
 
-1. **Public site:** brand story, capabilities, platform overview, analytics, security, documentation, and contact/conversion paths.
-2. **Identity surface:** sign-in, account creation, password recovery, and legal/support links.
-3. **Authenticated platform:** a dashboard for pipeline telemetry, deployments, AI models, cloud tooling, analytics, and workspace settings.
+MarvelCode should be designed as a multi-surface platform with a public web presence, an identity system, and an authenticated workspace. These surfaces may share one repository and deployment pipeline, but they must remain separated by responsibility and authorization boundary.
 
-The public and identity surfaces should share the same design system and application shell. The authenticated platform should share tokens and primitives, but use a dedicated application shell with a collapsible utility rail and workspace canvas. This prevents marketing navigation from becoming coupled to operational dashboard navigation.
+The core architectural principles are:
 
-## 2. Current-State Assessment
+1. **Separate public content from authenticated operations.** Marketing pages must not depend on private workspace data.
+2. **Organize code by business capability, not by screen.** A deployment feature should own its API, validation, types, and UI rather than scattering them across generic folders.
+3. **Keep domain logic independent from infrastructure.** Database, authentication provider, queue provider, and external services must be replaceable behind interfaces.
+4. **Enforce authorization on the server.** Client-side visibility controls are only a presentation concern.
+5. **Start modular, not distributed.** Use a modular monolith until scale or ownership boundaries justify separate services.
+6. **Design asynchronous operations explicitly.** Deployments, analytics processing, notifications, and integrations should have durable job states rather than blocking requests.
+7. **Make observability part of the system.** Every important action should be traceable through structured logs, metrics, and audit events.
 
-The repository is public, uses `main` as its only branch, and is currently an HTML/design archive. The main materials are under `stitch_brand_website_and_screen_design/` and include brand references, design specifications, and page mockups for the landing page, platform portal, sign-in, and account creation flows. There is no `package.json`, framework configuration, application entry point, test suite, or GitHub Actions workflow yet.
+## 2. System Context
 
-The existing design direction is strong and consistent: a dark cyber-intelligent enterprise aesthetic, electric blue-to-violet accents, Inter for interface text, Montserrat for display headings, JetBrains Mono for technical identifiers and telemetry, a 12-column desktop grid, glass-like layered surfaces, and a utility rail for complex tools.
+```text
+                              +----------------------+
+                              |  Public Web Client   |
+                              |  content, docs, SEO  |
+                              +----------+-----------+
+                                         |
+                                         v
++-------------+       +------------------+------------------+       +----------------+
+| Admin /     |------>|       Web Application              |------>| Identity       |
+| Operator    |       | public routes + authenticated UI  |       | Provider       |
++-------------+       +------------------+------------------+       +----------------+
+                                         |
+                                         v
+                              +----------+-----------+
+                              |   Application API       |
+                              | auth, domains, policy   |
+                              +--+-----+-----+-----+----+
+                                 |     |     |     |
+                                 v     v     v     v
+                              +----+ +----+ +----+ +------+
+                              | DB | |Jobs| |Blob| |Audit |
+                              +----+ +----+ +----+ +------+
+                                         |
+                                         v
+                              +----------+-----------+
+                              | External Integrations |
+                              | cloud, deploy, model, |
+                              | notification providers |
+                              +------------------------+
+```
 
-## 3. Target Information Architecture
+### Primary actors
 
-### Public routes
-
-| Route | Purpose | Primary action |
-|---|---|---|
-| `/` | Brand promise, capability summary, proof points, platform teaser | Explore platform / Start a conversation |
-| `/solutions` | Detailed capability suites | View a capability or contact MarvelCode |
-| `/platform` | Product/platform overview | Sign in or request access |
-| `/platform/technology` | Architecture, infrastructure, and technology narrative | Read documentation |
-| `/analytics` | Business intelligence and neural-data offering | Explore analytics |
-| `/brand-system` | Public brand/design system reference if desired | View brand system |
-| `/security` | Security posture, controls, whitepaper access | Read security material |
-| `/documentation` | Public developer and product documentation | Open a guide |
-| `/status` | Service availability and incidents | View current status |
-| `/contact` | Lead/contact form | Submit an inquiry |
-
-### Identity routes
-
-| Route | Purpose |
+| Actor | Responsibilities |
 |---|---|
-| `/login` | Sign in to MarvelCode |
-| `/create-account` | Create a user account |
-| `/forgot-password` | Start password recovery |
-| `/verify-email` | Complete email verification |
-| `/terms` | Terms of service |
-| `/privacy` | Privacy policy |
+| Visitor | Reads public content and submits low-risk inquiries. |
+| User | Authenticates and works within one or more workspaces. |
+| Workspace administrator | Manages members, permissions, environments, and integrations. |
+| Operator | Monitors system health, jobs, deployments, and incidents. |
+| Platform administrator | Manages global configuration, policies, and support operations. |
+| Automated worker | Executes asynchronous jobs and reports state transitions. |
+| External provider | Supplies identity, infrastructure, model, notification, or deployment capabilities. |
 
-### Authenticated platform routes
+## 3. Product Surfaces
 
-| Route | Purpose |
-|---|---|
-| `/app` | Redirect to the user's default workspace |
-| `/app/overview` | Pipeline overview and system health |
-| `/app/deployments` | Deployment history, status, and detail |
-| `/app/services` | Microservices health and runtime signals |
-| `/app/models` | AI model registry and recent model activity |
-| `/app/analytics` | Workspace analytics and reports |
-| `/app/toolkit` | Cloud actions and developer utilities |
-| `/app/docs` | Contextual product/developer documentation |
-| `/app/settings` | Profile, workspace, access, API keys, notifications |
+### 3.1 Public web surface
 
-Unknown routes should resolve to a branded not-found page. All `/app/*` routes must be protected by authentication and workspace authorization.
+The public surface contains company information, product capabilities, documentation, security information, service status, and contact flows. It may use static generation or server rendering. It must not query private workspace tables directly.
 
-## 4. Recommended Application Shape
+### 3.2 Identity surface
 
-Use a single TypeScript web application with route-level separation rather than multiple disconnected HTML pages. A React-based framework with server rendering and static generation support is appropriate; the implementation should use the repository's existing HTML as visual references, not as production page templates.
+The identity surface handles registration, sign-in, email verification, password recovery, session management, and account-level security settings. Identity credentials should be delegated to a proven identity provider or isolated authentication module rather than implemented ad hoc inside feature code.
+
+### 3.3 Workspace surface
+
+The workspace surface is the authenticated product. It provides operational views and actions for deployments, services, models, analytics, environments, integrations, and settings. Every request is scoped to a workspace and checked against the authenticated user's membership and permission set.
+
+### 3.4 Administration surface
+
+Administration should be a separate capability from ordinary workspace settings. It may share the application shell, but it requires elevated permissions and must be isolated through explicit routes, policies, audit events, and feature flags.
+
+## 4. Recommended Application Boundary
+
+Begin with a **modular monolith**:
+
+```text
+Browser / API clients
+        |
+        v
+Web application and API
+        |
+        +-- Identity module
+        +-- User and workspace module
+        +-- Service catalog module
+        +-- Environment module
+        +-- Deployment module
+        +-- Model registry module
+        +-- Analytics module
+        +-- Notification module
+        +-- Integration module
+        +-- Documentation/content module
+        +-- Audit and observability module
+        |
+        +-- Relational database
+        +-- Object storage
+        +-- Durable job queue
+```
+
+A modular monolith provides one deployable unit and one transaction boundary while preserving internal ownership boundaries. Extract a service only when there is a clear reason, such as independent scaling, separate deployment ownership, strict network isolation, or a provider-specific workload.
+
+Do not start with microservices, a service mesh, or event-driven infrastructure for every operation. Those choices add operational complexity before the product's domain boundaries are proven.
+
+## 5. Domain Modules
+
+### 5.1 Identity and access
+
+Owns users, sessions, authentication events, recovery flows, MFA configuration, and identity-provider integration. It exposes identity facts to the rest of the system but does not own workspace business rules.
+
+### 5.2 Workspace and membership
+
+Owns workspaces, memberships, roles, invitations, workspace preferences, environments, and membership lifecycle. This module is the root scope for most product data.
+
+### 5.3 Authorization policy
+
+Owns permission evaluation and policy definitions. A policy decision should receive the actor, workspace, resource, action, and context, then return allow or deny with a reason suitable for logging.
+
+Example actions:
+
+```text
+workspace.read
+workspace.manage
+member.invite
+member.remove
+service.read
+service.manage
+deployment.read
+deployment.create
+deployment.cancel
+model.read
+model.manage
+integration.read
+integration.manage
+audit.read
+```
+
+### 5.4 Service catalog
+
+Owns registered services, repositories, runtime metadata, deployment targets, health status, and service ownership. It provides the stable identity used by deployments, metrics, incidents, and documentation.
+
+### 5.5 Environment management
+
+Owns environments such as development, staging, and production. It defines environment-level policy, available integrations, deployment restrictions, approval requirements, and configuration references.
+
+### 5.6 Deployment orchestration
+
+Owns deployment requests, deployment plans, execution state, approvals, cancellation, rollback references, and provider adapters. The API should create a deployment job quickly and return a deployment identifier. A worker performs the long-running execution.
+
+Deployment state should be explicit:
+
+```text
+requested -> queued -> running -> succeeded
+                         |-> failed
+                         |-> cancelled
+                         |-> requires_approval
+```
+
+State transitions must be validated by the domain module rather than updated freely by controllers or UI clients.
+
+### 5.7 Model registry
+
+Owns model definitions, versions, providers, capabilities, lifecycle state, and workspace availability. It should not assume that every model is hosted by the same provider.
+
+### 5.8 Analytics and metrics
+
+Owns metric definitions, time-series ingestion, aggregation jobs, report queries, and retention policy. Operational dashboards should read from query-optimized projections rather than repeatedly scanning transactional tables.
+
+### 5.9 Notifications
+
+Owns notification preferences, delivery attempts, templates, channels, and retry state. Email, in-app, and webhook delivery should be adapters behind one notification interface.
+
+### 5.10 Integrations and secrets
+
+Owns provider connections, capability discovery, credential references, and integration health. Store secret material in a dedicated secret manager or encrypted secret store. The application database should retain only a provider reference and non-sensitive metadata where possible.
+
+### 5.11 Content and documentation
+
+Owns public pages, documentation articles, legal documents, release notes, and publication state. Public content should be deployable without requiring access to workspace data.
+
+### 5.12 Audit and observability
+
+Owns immutable audit events for security-sensitive and operational actions. Application logs and audit records are different: logs support debugging, while audit records explain who performed which action, on what resource, and when.
+
+## 6. Repository Structure Before Coding
+
+Use capability-based ownership from the beginning:
 
 ```text
 src/
-  app/                         # route entries and layouts
-    (marketing)/               # public site shell and pages
-    (auth)/                    # sign-in and account flows
-    app/                       # authenticated platform shell
-  components/
-    ui/                        # buttons, inputs, cards, badges, dialogs
-    marketing/                 # hero, capability grid, proof metrics, CTA
-    platform/                  # KPI cards, telemetry, tables, command palette
-    navigation/                # public nav, footer, rail, breadcrumbs
-  design-system/
-    tokens.ts                  # color, type, spacing, radius, elevation
-    themes.ts                  # light/dark or future tenant themes
-  features/
-    auth/
-    deployments/
+  app/                         # route composition and request adapters
+  modules/
+    identity/
+      domain/
+      application/
+      infrastructure/
+      http/
+      ui/
+    workspaces/
+    authorization/
     services/
+    environments/
+    deployments/
     models/
     analytics/
-    workspace/
-  lib/
-    auth/
-    api/
+    notifications/
+    integrations/
+    content/
+    audit/
+  platform/
+    database/
+    queue/
+    storage/
+    observability/
+    configuration/
+  shared/
+    errors/
     validation/
-    telemetry/
-  styles/
-    globals.css
-    utilities.css
-  types/
-    api.ts
-    domain.ts
-public/
-  brand/                       # approved logos and reference exports
-  icons/
-  images/
+    types/
+    dates/
+    ids/
+  jobs/
+    deployment-worker/
+    analytics-worker/
+    notification-worker/
+  contracts/
+    api/
+    events/
+
+  tests/
+    unit/
+    integration/
+    contract/
+    end-to-end/
 
 content/
-  docs/
+  public/
+  documentation/
   legal/
 
- tests/
-   unit/
-   integration/
-   e2e/
+infra/
+  environments/
+  migrations/
+  deployment/
 ```
 
-The first implementation can use a static/mock data adapter so the screens become functional before a production API is available. Keep all data access behind feature services such as `deploymentService`, `workspaceService`, and `analyticsService`; components should not fetch directly from arbitrary endpoints.
+The `domain` layer contains business rules. The `application` layer coordinates use cases. The `infrastructure` layer talks to databases and providers. The `http` layer translates requests and responses. The `ui` layer presents the capability. This separation prevents controllers and components from accumulating business logic.
 
-## 5. Shells and Navigation
+## 7. Core Data Model
 
-### Marketing shell
+The initial relational model should include the following entities:
 
-The marketing shell contains the MarvelCode wordmark, links to Solutions, Platform, Technology, Analytics, Documentation, Security, and Status, plus a primary sign-in or request-access action. On mobile it becomes a menu drawer. Footer navigation should repeat the essential legal, support, documentation, and security links.
-
-### Auth shell
-
-The auth shell is deliberately quiet: centered form panel, brand mark, concise help/status links, and no full marketing navigation. It should preserve the same typography and color tokens while prioritizing completion, validation, and recovery states.
-
-### Platform shell
-
-The platform shell uses the design specification's utility rail: 64px collapsed and approximately 260px expanded. It contains Overview, Deployments, Services, Models, Analytics, Toolkit, Docs, and Settings. The main workspace is independently scrollable. The top bar should expose workspace context, environment/status, global search or command palette, notifications, and the user menu.
-
-The rail must be keyboard navigable and have an accessible expanded/collapsed label. On small screens, it becomes a drawer or bottom-level navigation rather than remaining permanently fixed.
-
-## 6. Design-System Implementation
-
-Promote the existing specification into typed tokens so the visual language is reusable rather than copied between pages.
-
-| Token group | Baseline |
+| Entity | Main responsibility |
 |---|---|
-| Canvas | `#0B1020` deep void with subtle blue radial glow |
-| Primary | `#2563EB` electric blue |
-| Secondary | `#8B5CF6` luminous violet |
-| Positive/live | `#10B981` green-cyan |
-| Text | `#F1F5F9` primary, slate variants for secondary text |
-| Fonts | Inter for UI/body, Montserrat for display, JetBrains Mono for code/telemetry |
-| Grid | 12 columns desktop, 8 tablet, 4 mobile; max width 1440px |
-| Spacing | 4px/8px rhythm; 8, 16, 24, and 40px core steps |
-| Radius | 8px controls, 16px cards, 24px elevated panels, pill status badges |
-| Surfaces | Layered translucent slate with subtle borders and restrained glow |
+| `users` | Account identity and profile metadata. |
+| `sessions` | Active authenticated sessions or provider references. |
+| `workspaces` | Tenant boundary for product data. |
+| `memberships` | User-to-workspace relationship and role. |
+| `roles` / `permissions` | Authorization vocabulary and assignments. |
+| `invitations` | Pending workspace membership invitations. |
+| `environments` | Workspace deployment contexts. |
+| `services` | Registered deployable services. |
+| `deployments` | Requested and executed deployment operations. |
+| `deployment_events` | Append-only execution history. |
+| `models` / `model_versions` | Model registry and lifecycle metadata. |
+| `integrations` | External provider connections and capabilities. |
+| `metric_definitions` | Meaning and unit of measurable signals. |
+| `metric_points` or warehouse projection | Queryable operational measurements. |
+| `notifications` | User-facing notification records. |
+| `audit_events` | Immutable security and operations history. |
 
-Core components should include `Button`, `IconButton`, `Badge`, `Input`, `Select`, `Dialog`, `Card`, `MetricCard`, `DataTable`, `StatusPill`, `TerminalBlock`, `EmptyState`, `Toast`, `Skeleton`, `ErrorState`, and `CommandPalette`. Every component needs keyboard, focus, loading, empty, error, and reduced-motion behavior where applicable.
+Every workspace-owned table should include `workspace_id`, unless it is purely global. Add indexes for workspace scope, status, timestamps, and the most common list filters. Use soft deletion only when retention or audit requirements demand it; otherwise prefer explicit lifecycle states.
 
-Avoid relying on runtime Tailwind CDN scripts in production. The current mockups use CDN Tailwind and Google Fonts; the production build should bundle or self-host the chosen fonts and compile styles so deployments are deterministic and Content Security Policy can be tightened.
+## 8. Request and Data Flow
 
-## 7. Domain and Data Boundaries
-
-The initial domain model should remain small and explicit:
+### Synchronous read
 
 ```text
-User
-  id, email, displayName, role, status
-
-Workspace
-  id, name, plan, environment, createdAt
-
-Membership
-  userId, workspaceId, role, permissions
-
-Service
-  id, workspaceId, name, environment, status, version, latency
-
-Deployment
-  id, workspaceId, serviceId, version, status, actorId, startedAt, completedAt
-
-Model
-  id, workspaceId, name, version, status, provider, updatedAt
-
-MetricSeries
-  workspaceId, subjectType, subjectId, metric, timestamp, value
-
-Incident
-  id, status, severity, title, startedAt, resolvedAt
+Client -> route/controller -> authentication -> authorization
+       -> application use case -> repository/query service -> database
+       <- response DTO <- controller <- client
 ```
 
-Use workspace-scoped authorization on every authenticated read and write. The UI should never infer authorization from hidden controls alone; the API must enforce it. Audit events should be recorded for deployment actions, API-key changes, role changes, and other security-sensitive operations.
+### Synchronous command creating a job
 
-## 8. API and Integration Boundary
+```text
+Client -> authenticated command endpoint
+       -> validate input and policy
+       -> create domain record in pending state
+       -> enqueue durable job
+       <- command id and current state
+```
 
-Expose a versioned server boundary such as `/api/v1`. Suggested resource groups are `/auth`, `/workspaces`, `/services`, `/deployments`, `/models`, `/metrics`, `/incidents`, and `/audit-events`.
+### Asynchronous worker
 
-For the first milestone, use a local mock adapter with deterministic fixtures. The adapter should implement the same interfaces as the eventual API, allowing real services to replace fixtures without rewriting page components. Long-running deployment or analytics updates should use polling or server-sent events only after the basic request/response flows are stable.
+```text
+Worker -> claim job -> load domain record
+       -> call provider adapter
+       -> record progress and provider references
+       -> transition domain state
+       -> write audit event
+       -> publish notification/event
+```
 
-External credentials must stay in environment-managed secrets. Never place API keys, access tokens, or private service URLs in this public repository or in client-side bundles.
+### Event usage
 
-## 9. Security and Privacy Baseline
+Use domain events for decoupling within the modular monolith, not as a substitute for every function call. Events are appropriate for `DeploymentSucceeded`, `DeploymentFailed`, `MemberInvited`, `IntegrationChanged`, and `IncidentOpened`. Event handlers must be idempotent and retryable.
 
-The public repository already has secret-scanning and push protection enabled. Keep those controls enabled and add dependency security updates before production code is introduced. The target application should also implement:
+## 9. API Design
 
-- Secure, HTTP-only, same-site session cookies or a vetted identity provider.
-- Server-side authorization checks for workspace and role permissions.
+Use a versioned API boundary such as `/api/v1`. Keep transport models separate from database models. Each endpoint should define authentication requirements, authorization action, request schema, response schema, error codes, pagination rules, and idempotency behavior.
+
+Suggested resource groups:
+
+```text
+POST   /api/v1/auth/session
+GET    /api/v1/me
+GET    /api/v1/workspaces
+POST   /api/v1/workspaces
+GET    /api/v1/workspaces/:workspaceId/members
+POST   /api/v1/workspaces/:workspaceId/invitations
+GET    /api/v1/workspaces/:workspaceId/services
+POST   /api/v1/workspaces/:workspaceId/services
+GET    /api/v1/workspaces/:workspaceId/deployments
+POST   /api/v1/workspaces/:workspaceId/deployments
+POST   /api/v1/workspaces/:workspaceId/deployments/:id/cancel
+GET    /api/v1/workspaces/:workspaceId/models
+GET    /api/v1/workspaces/:workspaceId/metrics
+GET    /api/v1/workspaces/:workspaceId/audit-events
+```
+
+Use cursor pagination for event-like resources, stable sorting for all lists, structured error responses, request correlation IDs, and idempotency keys for commands that can be retried.
+
+## 10. Authorization Model
+
+Use workspace-scoped role-based access control as the baseline, with resource checks where needed.
+
+| Role | Default scope |
+|---|---|
+| Viewer | Read workspace resources and dashboards. |
+| Developer | Read resources and create or manage development deployments. |
+| Operator | Manage operational actions and monitor production resources. |
+| Administrator | Manage members, integrations, environments, and policies. |
+| Owner | Full workspace control, including ownership and billing-related settings if added later. |
+
+Authorization must be applied in this order:
+
+1. Authenticate the request.
+2. Resolve the target workspace.
+3. Verify membership and account status.
+4. Evaluate the required action against the resource and environment.
+5. Execute the use case.
+6. Write an audit event for sensitive actions.
+
+Never treat a hidden button, route guard, or client-side role check as authorization.
+
+## 11. Reliability and Operational Requirements
+
+The system should define service-level expectations before implementation:
+
+| Area | Initial target |
+|---|---|
+| Public page availability | 99.9% monthly target after production launch |
+| API read latency | p95 under 500 ms for ordinary workspace reads |
+| Command response | Return accepted job state under 1 second when dependencies are available |
+| Job execution | Durable retries with visible failure state |
+| Audit durability | No silent loss for security-sensitive actions |
+| Recovery | Database backup and tested restoration procedure |
+| Observability | Correlation ID across request, job, provider call, and audit event |
+
+Add timeouts, retry policies, circuit breakers, and provider-specific error mapping at integration boundaries. Do not retry non-idempotent commands without an idempotency key.
+
+## 12. Security Baseline
+
+Before production, implement:
+
+- Secure session management with HTTP-only, secure, same-site cookies or an established identity provider.
+- MFA support for privileged accounts.
+- Server-side workspace and resource authorization.
+- Rate limits for authentication, invitations, recovery, and public forms.
 - CSRF protection for cookie-authenticated mutations.
-- Rate limiting on sign-in, account creation, password recovery, and contact endpoints.
-- Input validation at the API boundary and output encoding for user-controlled content.
-- Content Security Policy, strict transport security, and secure cookie flags.
-- Redacted logs and no secrets or sensitive customer data in telemetry payloads.
-- Audit history for access, deployments, API keys, and permission changes.
-- Clear retention and deletion policies for contact, account, and telemetry data.
+- Strict input validation and output encoding.
+- Encrypted secrets and no credentials in source control.
+- Content Security Policy and strict transport security.
+- Redacted logs and sensitive-field filtering.
+- Immutable audit records for access, deployment, integration, role, and credential actions.
+- Dependency scanning, secret scanning, and protected production environments.
 
-## 10. Accessibility and Performance
+## 13. Development Sequence
 
-Target WCAG 2.2 AA for the public and platform surfaces. Ensure visible focus states, semantic headings, correct form labels, keyboard access to the rail and command palette, sufficient contrast, reduced-motion support, and meaningful status announcements for async actions.
+### Stage 1 — Architecture foundation
 
-Use static generation or server rendering for public pages, lazy-load the dashboard and heavy visualizations, reserve space for charts to avoid layout shift, optimize reference imagery, and avoid loading all platform modules on the landing page. Measure Core Web Vitals on the public routes and establish a performance budget before adding animation or large visualization libraries.
+Decide the framework, identity provider, database, queue, object storage, deployment target, and observability provider. Write ADRs for each decision. Create the repository structure, configuration validation, error model, ID strategy, logging conventions, and migration process.
 
-## 11. Delivery Plan
+### Stage 2 — Identity and workspace foundation
 
-### Phase 0 — Foundation
+Implement users, sessions, workspaces, memberships, invitations, roles, permission checks, and audit events. Build contract tests for authentication and authorization before adding operational features.
 
-Create the application scaffold, TypeScript configuration, route shells, token layer, linting, formatting, unit-test setup, and a minimal CI workflow. Move only approved logos and optimized assets into `public/brand`.
+### Stage 3 — Service and environment catalog
 
-### Phase 1 — Public MVP
+Implement services, environments, integrations, and provider capability discovery. At this stage the system should be able to represent what exists, even if it cannot deploy anything yet.
 
-Implement `/`, `/solutions`, `/platform`, `/security`, `/documentation`, `/status`, and `/contact` using the existing landing page and brand references. Replace placeholder `href="#"` links with real routes and make all CTA states explicit.
+### Stage 4 — Deployment workflow
 
-### Phase 2 — Identity
+Implement deployment creation, validation, approval policy, queueing, worker execution, provider adapters, status transitions, cancellation, failure handling, and audit history. Use a fake provider in automated tests.
 
-Implement sign-in, account creation, password recovery, verification, legal pages, validation, loading states, and error recovery. Connect to the chosen identity provider only after the screens work against a mock adapter.
+### Stage 5 — Models, analytics, and notifications
 
-### Phase 3 — Platform MVP
+Add model registry, metrics ingestion/projections, dashboard queries, notification preferences, and delivery adapters. Keep analytics read models separate from command-side transactional tables.
 
-Implement the platform shell, overview, deployments, services, models, and settings routes. Start with fixture data, then connect read-only API endpoints, then enable controlled mutations such as deployment actions.
+### Stage 6 — Public content and documentation
 
-### Phase 4 — Hardening
+Add public content, documentation, legal pages, status information, and contact workflows as a separate surface. These pages should be deployable and testable without authenticated workspace data.
 
-Add end-to-end tests, accessibility checks, error monitoring, audit logging, rate limits, CSP, dependency updates, performance budgets, and production deployment previews.
+### Stage 7 — Hardening
 
-## 12. GitHub and Deployment Recommendations
+Add end-to-end tests, contract tests against providers, backup restoration tests, load testing, accessibility checks, security review, incident procedures, and production deployment gates.
 
-The repository currently has one branch and no Actions workflow. Before production implementation:
+## 14. Testing Strategy
 
-1. Add a pull-request workflow that runs formatting, linting, type checking, unit tests, and a production build.
-2. Enable Dependabot security updates.
-3. Protect `main` with required pull-request review and required CI checks.
-4. Enable automatic branch deletion after merge.
-5. Add an environment-based deployment target with preview deployments for pull requests and production deployment from `main`.
-6. Keep the public design archive under `stitch_brand_website_and_screen_design/`, but place production code under `src/` so references and application code are not confused.
-7. Add a concise README with local setup, environment variables, test commands, and deployment instructions.
+Use four test levels:
 
-A suitable initial deployment model is a static/server-rendered public site plus a protected application/API deployment. If the platform API is not ready, deploy the public surface first and keep `/app/*` behind an explicit “access coming soon” or authentication gate rather than exposing mock operational data as real telemetry.
+1. **Unit tests:** domain rules, state transitions, permission decisions, validators, and retry logic.
+2. **Integration tests:** repositories, migrations, queue behavior, identity callbacks, and provider adapters using test services or fakes.
+3. **Contract tests:** API request/response schemas and event payloads between modules and external providers.
+4. **End-to-end tests:** sign-in, workspace creation, invitation, deployment request, approval, failure, and recovery journeys.
 
-## 13. Definition of Done for the First Production Release
+Every domain module should have tests for its happy path, authorization failures, invalid transitions, retries, duplicate requests, and dependency failures.
 
-The first release is ready when the public navigation has no dead links, the landing page is responsive, brand assets are optimized and licensed, forms have real validation and error states, all protected routes enforce authentication and workspace access, CI passes on every pull request, secrets are externalized, public pages meet the agreed accessibility and performance targets, and the deployment process can be repeated from a clean checkout.
+## 15. Decisions to Make Before Coding
 
-## 14. Immediate Next Step
+The following decisions materially affect the implementation and should be recorded as short architecture decision records:
 
-Create the application scaffold and design-token layer first. Then implement the public home page from `marvelcode_turning_ideas_into_intelligent_solutions/code.html` as the reference screen, while treating the platform portal, sign-in, and account-creation mockups as separate route references rather than trying to stitch all HTML files into one page.
+- Web framework and rendering strategy.
+- Identity provider and MFA approach.
+- Relational database and migration tooling.
+- Queue and worker runtime.
+- Object storage and secret manager.
+- Deployment provider and environment topology.
+- Metrics storage strategy: relational projection, time-series store, or warehouse.
+- Notification channels and provider choices.
+- Workspace tenancy model and data isolation requirements.
+- Retention, deletion, and backup policies.
+- Production observability and incident response ownership.
+
+If a decision is not required to begin the foundation, defer it rather than introducing a speculative dependency.
+
+## 16. Definition of Architecture-Ready
+
+The system is ready to enter implementation when the team can answer, in writing:
+
+- What belongs to each domain module?
+- Which requests are synchronous and which become jobs?
+- How is every workspace-owned resource authorized?
+- Which data is transactional, analytical, temporary, or immutable?
+- How are external providers isolated behind adapters?
+- How are failures retried, surfaced, and audited?
+- How are deployments, environments, secrets, and backups separated?
+- What is the first vertical slice that proves the architecture?
+
+The recommended first vertical slice is: **authenticate a user, create or select a workspace, register a service, create a development environment, request a deployment through a fake provider, process it asynchronously, and display the resulting audit trail**. This slice validates the most important architectural boundaries before large amounts of frontend or provider-specific code are written.
