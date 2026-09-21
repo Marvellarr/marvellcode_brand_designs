@@ -1,96 +1,60 @@
-flowchart LR
-  V[Visitors and users]
-  A[Administrators and operators]
+flowchart TB
+  USER[User]
 
-  subgraph EXP[EXPERIENCE · BLUE]
-    WEB[Public website]
-    AUTH[Identity and account surface]
-    APP[Authenticated workspace]
-    ADMIN[Administration surface]
-    API[Versioned API]
+  subgraph EXPERIENCE[EXPERIENCE · BLUE]
+    PUBLIC[Public shell]
+    ACCOUNT[Account shell]
+    WORKSPACE[Workspace shell]
   end
 
-  subgraph CORE[CORE APPLICATION · VIOLET]
-    IAM[Identity and access]
-    WS[Workspace and membership]
-    POL[Authorization policy]
-    CAT[Services and environments]
-    DEP[Deployment orchestration]
-    MOD[Model registry]
-    ANA[Analytics and metrics]
-    NOT[Notifications]
-    INT[Integrations and secrets]
-    CON[Content and documentation]
-    AUD[Audit and observability]
+  subgraph APPLICATION[APPLICATION · VIOLET]
+    ROUTER[Router and route guards]
+    FEATURES[Feature modules]
+    UI[Shared UI components]
+    STATE[Client state and query cache]
+    FORMS[Forms and validation]
   end
 
-  subgraph PLATFORM[PLATFORM FOUNDATION · GREEN]
-    DB[(Relational database)]
-    QUEUE[[Durable job queue]]
-    STORE[(Object storage)]
-    CACHE[(Cache)]
-    MON[(Logs, metrics, traces)]
+  subgraph DATA[DATA · GREEN]
+    CLIENT[Typed API client]
+    AUTH[Session adapter]
+    MOCK[Mock data adapter]
+    ERRORS[Loading and error normalization]
   end
 
-  subgraph EXT[EXTERNAL EXECUTION · ORANGE]
-    IDP[Identity provider]
-    CLOUD[Cloud and deployment providers]
-    MODEL[Model providers]
-    MSG[Email and notification providers]
+  subgraph EXTERNAL[EXTERNAL BOUNDARY · ORANGE]
+    API[Application API]
+    IDENTITY[Identity service]
+    CONTENT[Content and asset delivery]
   end
 
-  V --> WEB
-  V --> AUTH
-  A --> ADMIN
-  A --> APP
-  WEB --> API
-  AUTH --> API
-  APP --> API
-  ADMIN --> API
+  USER --> PUBLIC
+  USER --> ACCOUNT
+  USER --> WORKSPACE
+  PUBLIC --> ROUTER
+  ACCOUNT --> ROUTER
+  WORKSPACE --> ROUTER
+  ROUTER --> FEATURES
+  FEATURES --> UI
+  FEATURES --> STATE
+  FEATURES --> FORMS
+  STATE --> CLIENT
+  ACCOUNT --> AUTH
+  CLIENT --> ERRORS
+  AUTH --> ERRORS
+  CLIENT --> API
+  AUTH --> IDENTITY
+  PUBLIC --> CONTENT
+  CLIENT -. development .-> MOCK
 
-  API --> IAM
-  API --> WS
-  API --> POL
-  API --> CAT
-  API --> DEP
-  API --> MOD
-  API --> ANA
-  API --> NOT
-  API --> CON
+  classDef blue fill:#2563eb,stroke:#93c5fd,color:#fff,stroke-width:2px;
+  classDef violet fill:#7c3aed,stroke:#c4b5fd,color:#fff,stroke-width:2px;
+  classDef green fill:#059669,stroke:#6ee7b7,color:#fff,stroke-width:2px;
+  classDef orange fill:#ea580c,stroke:#fdba74,color:#fff,stroke-width:2px;
+  classDef user fill:#0f172a,stroke:#38bdf8,color:#fff,stroke-width:2px;
 
-  IAM --> IDP
-  IAM --> DB
-  WS --> DB
-  POL --> DB
-  CAT --> DB
-  CAT --> INT
-  DEP --> DB
-  DEP --> QUEUE
-  DEP --> CLOUD
-  MOD --> DB
-  MOD --> MODEL
-  ANA --> DB
-  ANA --> MON
-  NOT --> QUEUE
-  NOT --> MSG
-  INT --> STORE
-  CON --> STORE
-  AUD --> DB
-  AUD --> MON
-  API --> CACHE
-
-  QUEUE --> DEP
-  QUEUE --> ANA
-  QUEUE --> NOT
-
-  classDef experience fill:#1d4ed8,stroke:#93c5fd,color:#ffffff,stroke-width:2px;
-  classDef core fill:#7c3aed,stroke:#c4b5fd,color:#ffffff,stroke-width:2px;
-  classDef platform fill:#059669,stroke:#6ee7b7,color:#ffffff,stroke-width:2px;
-  classDef external fill:#ea580c,stroke:#fdba74,color:#ffffff,stroke-width:2px;
-  classDef actor fill:#0f172a,stroke:#38bdf8,color:#ffffff,stroke-width:2px;
-
-  class V,A actor;
-  class WEB,AUTH,APP,ADMIN,API experience;
-  class IAM,WS,POL,CAT,DEP,MOD,ANA,NOT,INT,CON,AUD core;
-  class DB,QUEUE,STORE,CACHE,MON platform;
-  class IDP,CLOUD,MODEL,MSG external;
+  class USER user;
+  class PUBLIC,ACCOUNT,WORKSPACE blue;
+  class ROUTER,FEATURES,UI,STATE,FORMS violet;
+  class CLIENT,AUTH,MOCK,ERRORS green;
+  class API,IDENTITY,CONTENT orange;
