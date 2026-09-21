@@ -1,0 +1,96 @@
+flowchart LR
+  V[Visitors and users]
+  A[Administrators and operators]
+
+  subgraph EXP[EXPERIENCE · BLUE]
+    WEB[Public website]
+    AUTH[Identity and account surface]
+    APP[Authenticated workspace]
+    ADMIN[Administration surface]
+    API[Versioned API]
+  end
+
+  subgraph CORE[CORE APPLICATION · VIOLET]
+    IAM[Identity and access]
+    WS[Workspace and membership]
+    POL[Authorization policy]
+    CAT[Services and environments]
+    DEP[Deployment orchestration]
+    MOD[Model registry]
+    ANA[Analytics and metrics]
+    NOT[Notifications]
+    INT[Integrations and secrets]
+    CON[Content and documentation]
+    AUD[Audit and observability]
+  end
+
+  subgraph PLATFORM[PLATFORM FOUNDATION · GREEN]
+    DB[(Relational database)]
+    QUEUE[[Durable job queue]]
+    STORE[(Object storage)]
+    CACHE[(Cache)]
+    MON[(Logs, metrics, traces)]
+  end
+
+  subgraph EXT[EXTERNAL EXECUTION · ORANGE]
+    IDP[Identity provider]
+    CLOUD[Cloud and deployment providers]
+    MODEL[Model providers]
+    MSG[Email and notification providers]
+  end
+
+  V --> WEB
+  V --> AUTH
+  A --> ADMIN
+  A --> APP
+  WEB --> API
+  AUTH --> API
+  APP --> API
+  ADMIN --> API
+
+  API --> IAM
+  API --> WS
+  API --> POL
+  API --> CAT
+  API --> DEP
+  API --> MOD
+  API --> ANA
+  API --> NOT
+  API --> CON
+
+  IAM --> IDP
+  IAM --> DB
+  WS --> DB
+  POL --> DB
+  CAT --> DB
+  CAT --> INT
+  DEP --> DB
+  DEP --> QUEUE
+  DEP --> CLOUD
+  MOD --> DB
+  MOD --> MODEL
+  ANA --> DB
+  ANA --> MON
+  NOT --> QUEUE
+  NOT --> MSG
+  INT --> STORE
+  CON --> STORE
+  AUD --> DB
+  AUD --> MON
+  API --> CACHE
+
+  QUEUE --> DEP
+  QUEUE --> ANA
+  QUEUE --> NOT
+
+  classDef experience fill:#1d4ed8,stroke:#93c5fd,color:#ffffff,stroke-width:2px;
+  classDef core fill:#7c3aed,stroke:#c4b5fd,color:#ffffff,stroke-width:2px;
+  classDef platform fill:#059669,stroke:#6ee7b7,color:#ffffff,stroke-width:2px;
+  classDef external fill:#ea580c,stroke:#fdba74,color:#ffffff,stroke-width:2px;
+  classDef actor fill:#0f172a,stroke:#38bdf8,color:#ffffff,stroke-width:2px;
+
+  class V,A actor;
+  class WEB,AUTH,APP,ADMIN,API experience;
+  class IAM,WS,POL,CAT,DEP,MOD,ANA,NOT,INT,CON,AUD core;
+  class DB,QUEUE,STORE,CACHE,MON platform;
+  class IDP,CLOUD,MODEL,MSG external;

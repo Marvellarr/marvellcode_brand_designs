@@ -10,6 +10,15 @@ This document defines the structure of the MarvelCode system before coding begin
 
 MarvelCode should be designed as a multi-surface platform with a public web presence, an identity system, and an authenticated workspace. These surfaces may share one repository and deployment pipeline, but they must remain separated by responsibility and authorization boundary.
 
+This document defines **one unified design**: a colorful modular monolith with one application boundary, one relational system of record, durable background workers, and provider adapters. The colors identify responsibility in the system diagram; they are not alternative implementation choices.
+
+- **Blue — Experience:** public website, identity, authenticated workspace, administration, and API clients.
+- **Violet — Core application:** identity, workspaces, authorization, services, deployments, models, analytics, notifications, content, and audit logic.
+- **Green — Platform foundation:** database, object storage, durable job queue, cache, and observability.
+- **Orange — External execution:** identity, cloud, deployment, model, email, and notification providers.
+
+The architecture diagram is maintained in [`SYSTEM_ARCHITECTURE.mmd`](SYSTEM_ARCHITECTURE.mmd) and rendered as [`SYSTEM_ARCHITECTURE.png`](SYSTEM_ARCHITECTURE.png). This is the single baseline to implement; do not split it into microservices until measured requirements justify that change.
+
 The core architectural principles are:
 
 1. **Separate public content from authenticated operations.** Marketing pages must not depend on private workspace data.
