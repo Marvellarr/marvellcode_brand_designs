@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Montserrat:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"secondary":"#d0bcff","on-secondary-fixed":"#23005c","on-tertiary":"#00354a","on-secondary-fixed-variant":"#5516be","secondary-fixed-dim":"#d0bcff","surface-dim":"#0e1323","inverse-primary":"#0053db","secondary-container":"#571bc1","on-surface-variant":"#c3c6d7","on-primary":"#002a78","error":"#ffb4ab","surface-bright":"#34394a","surface-tint":"#b4c5ff","on-primary-fixed-variant":"#003ea8","on-surface":"#dee1f9","tertiary-fixed-dim":"#7bd0ff","surface":"#0e1323","surface-container-highest":"#2f3446","surface-container-high":"#25293a","tertiary":"#7bd0ff","outline-variant":"#434655","on-tertiary-fixed-variant":"#004c69","on-primary-fixed":"#00174b","inverse-on-surface":"#2b3041","on-primary-container":"#eeefff","on-error":"#690005","tertiary-container":"#00759f","tertiary-fixed":"#c4e7ff","surface-container-lowest":"#080d1d","on-tertiary-fixed":"#001e2c","error-container":"#93000a","primary":"#b4c5ff","background":"#0e1323","surface-container-low":"#161b2b","primary-fixed-dim":"#b4c5ff","surface-container":"#1a1f30","secondary-fixed":"#e9ddff","inverse-surface":"#dee1f9","on-tertiary-container":"#e1f2ff","on-background":"#dee1f9","on-secondary-container":"#c4abff","outline":"#8d90a0","on-secondary":"#3c0091","primary-container":"#2563eb","surface-variant":"#2f3446","on-error-container":"#ffdad6","primary-fixed":"#dbe1ff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1.5rem","space-md":"1rem","margin-mobile":"1.25rem","space-xs":"0.25rem","gutter-mobile":"1rem","margin":"3rem","space-lg":"1.5rem","space-sm":"0.5rem","space-xl":"2.5rem"},"fontFamily":{"label-md":["Inter"],"headline-sm":["Montserrat"],"headline-xl-mobile":["Montserrat"],"display-md":["Montserrat"],"code-sm":["JetBrains Mono"],"body-md":["Inter"],"label-sm":["Inter"],"display-lg-mobile":["Montserrat"],"body-lg":["Inter"],"headline-md":["Montserrat"],"headline-lg":["Montserrat"],"label-lg":["Inter"],"body-sm":["Inter"],"display-lg":["Montserrat"],"headline-xl":["Montserrat"],"display-md-mobile":["Montserrat"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"display-md":["44px",{"lineHeight":"52px","letterSpacing":"-0.02em","fontWeight":"700"}],"code-sm":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"500"}],"body-md":["15px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"800"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"0em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.03em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"20px","letterSpacing":"0.005em","fontWeight":"400"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-xl":["32px",{"lineHeight":"40px","letterSpacing":"-0.015em","fontWeight":"700"}],"display-md-mobile":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="home" href="#"><img alt="secondary-logo-reference.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VclCMLWti1bYTrenrXTh7MI6_BP4GG18odCjn-ueDCa4d6UI5P5ORE9ePMx-o9sU4vwL7qoqelPzpcXA6oLURKeLKIHEWsY8zOcmfQhleg6S5KBUc1xS_St-JdBhsieg3sMnKvw2-TnEIETINUFx5PK-V_KKdBMkNe1cwRvHIMY770cKusNKiaGZX06S1wwyQ_CdBbb6P47v5euzz1JgKA5E9vTmCwy0PoXWe2Ya7f34jmMQacAS1WPMw6a9Z7fEZxi6UAa5Crfw"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight hidden sm:inline-block">MarvelCode</span></a><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span><span class="font-label-sm text-label-sm uppercase text-tertiary">Systems Online</span></div></div><nav class="hidden md:flex items-center gap-space-md" data-active-classes="bg-surface-container text-primary font-bold rounded-lg"><a class="px-space-sm py-1.5 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="solutions" href="#">Solutions</a><a class="px-space-sm py-1.5 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="platform-and-tech" href="#">Platform &amp; Tech</a><a aria-current="page" class="px-space-sm py-1.5 transition-colors bg-surface-container text-primary font-bold rounded-lg" data-path="brand-system" href="#">Brand System</a><a class="px-space-sm py-1.5 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="analytics" href="#">Analytics</a></nav><div class="flex items-center gap-space-sm"><a class="hidden sm:inline-flex items-center justify-center px-space-md py-2 rounded-lg font-label-lg text-label-lg text-on-surface bg-surface-container-low hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="login" href="#">Sign In</a><a class="inline-flex items-center justify-center px-space-md py-2 rounded-lg font-headline-sm text-headline-sm text-on-primary-container bg-gradient-to-r from-[#2563EB] to-[#8B5CF6] hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all" data-path="platform-portal" href="#">Launch Platform</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="flex flex-col w-full">
+<!-- Subtle Ambient Top Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-gradient-to-b from-primary-container/20 via-secondary-container/10 to-transparent blur-3xl pointer-events-none rounded-full"></div>
+<!-- Page Hero / Identity Header -->
+<section class="max-w-7xl mx-auto px-gutter pt-space-lg pb-space-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md border-none">
+<div class="space-y-space-xs">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high text-primary">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Master Guidelines • Ver 4.8</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">
+            MarvelCode Brand System
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+            A crystalline, cyber-architectural visual foundation engineered for high-throughput intelligent platforms. Precision, luminescence, and computational elegance.
+          </p>
+</div>
+<!-- Pillar Tags & Quick Slogan -->
+<div class="flex flex-col items-start md:items-end gap-space-xs">
+<div class="flex flex-wrap gap-space-xs">
+<span class="px-space-sm py-1 rounded-lg bg-surface-container font-label-md text-label-md text-tertiary">Modern</span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container font-label-md text-label-md text-primary">Tech</span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container font-label-md text-label-md text-secondary">Creative</span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container font-label-md text-label-md text-on-surface">Innovative</span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container font-label-md text-label-md text-on-surface-variant">Global</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-primary tracking-widest uppercase">
+            Ideas / Systems / Impact
+          </div>
+</div>
+</div>
+</section>
+</div>
+<!-- Main Showcase Container -->
+<div class="max-w-7xl mx-auto px-gutter space-y-space-xl pb-space-xl w-full">
+<!-- Section 1: Separated Logo Suite Showcase -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-code-sm text-code-sm text-tertiary">01 // VISUAL MARK</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Primary Logo Suite</h2>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs">
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg font-label-lg text-label-lg text-on-primary-container bg-primary-container hover:shadow-lg hover:shadow-primary-container/30 transition-all" id="downloadSuiteBtn">
+<span class="material-symbols-outlined text-[18px]">download</span>
+            Export Brand Kit (.ZIP)
+          </button>
+</div>
+</div>
+<!-- Bento Grid for Primary Logo & Horizontal Lockup -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Primary Full-Color Display Card with Clear-Space Grid -->
+<div class="lg:col-span-7 bg-surface-container-low rounded-xl p-space-lg relative overflow-hidden flex flex-col justify-between group">
+<div class="absolute -right-20 -bottom-20 w-80 h-80 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="w-3 h-3 rounded-full bg-[#f59e0b]"></span>
+<span class="w-3 h-3 rounded-full bg-[#10b981]"></span>
+<span class="font-code-sm text-code-sm text-on-surface-variant ml-2">SPEC: PRIMARY_LOCKUP_3D</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider px-space-sm py-0.5 rounded-full bg-surface-container-highest text-tertiary">Master Vector Mark</span>
+</div>
+<!-- Interactive Logo Display Stage with Clear-Space Markers -->
+<div class="relative py-space-xl px-space-md flex flex-col items-center justify-center bg-surface-container-lowest rounded-lg overflow-hidden">
+<!-- Clearspace Visual Bounds -->
+<div class="absolute inset-8 border border-dashed border-outline-variant/30 rounded-lg pointer-events-none flex flex-col justify-between p-2">
+<div class="flex justify-between font-code-sm text-[10px] text-tertiary-container uppercase">
+<span>[ Clear Space: 1X ]</span>
+<span>[ Clear Space: 1X ]</span>
+</div>
+<div class="flex justify-between font-code-sm text-[10px] text-tertiary-container uppercase">
+<span>Pad: 32px min</span>
+<span>Pad: 32px min</span>
+</div>
+</div>
+<!-- Stylized SVG Construction of the MarvelCode Primary Logo -->
+<div class="relative z-10 flex flex-col items-center text-center scale-95 hover:scale-100 transition-transform duration-500">
+<div class="w-36 h-36 relative mb-space-sm flex items-center justify-center">
+<!-- Outer Orbit Glow -->
+<svg class="w-full h-full drop-shadow-[0_0_25px_rgba(37,99,235,0.45)]" viewbox="0 0 160 160">
+<defs>
+<lineargradient id="orbitGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#2563EB"></stop>
+<stop offset="100%" stop-color="#8B5CF6"></stop>
+</lineargradient>
+<lineargradient id="facetGrad1" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#38BDF8"></stop>
+<stop offset="60%" stop-color="#2563EB"></stop>
+<stop offset="100%" stop-color="#1D4ED8"></stop>
+</lineargradient>
+<lineargradient id="facetGrad2" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#8B5CF6"></stop>
+<stop offset="100%" stop-color="#4C1D95"></stop>
+</lineargradient>
+</defs>
+<!-- Orbit Ring -->
+<ellipse class="opacity-80" cx="80" cy="80" fill="none" rx="72" ry="24" stroke="url(#orbitGrad)" stroke-dasharray="2 1" stroke-width="3" transform="rotate(-28 80 80)"></ellipse>
+<!-- Star Sparkle Top Right -->
+<path class="animate-pulse" d="M128 28 L131 36 L139 39 L131 42 L128 50 L125 42 L117 39 L125 36 Z" fill="#7BD0FF"></path>
+<!-- 3D Faceted 'M' Left Wing -->
+<polygon fill="url(#facetGrad1)" points="32,45 60,30 60,118 32,130"></polygon>
+<!-- 'M' Center Apex Left -->
+<polygon fill="#1E40AF" points="60,30 80,78 60,118"></polygon>
+<!-- 'M' Center Apex Right -->
+<polygon fill="url(#facetGrad2)" points="80,78 100,30 100,118"></polygon>
+<!-- 'M' Right Wing / C facet -->
+<polygon fill="#7C3AED" points="100,30 128,45 128,130 100,118"></polygon>
+<!-- Terminal Code Slash '< / >' Centered in negative space -->
+<text class="select-none tracking-tighter" fill="#E1F2FF" font-family="JetBrains Mono" font-size="20" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<!-- Brand Name Wordmark -->
+<div class="space-y-1">
+<div class="font-headline-xl text-headline-xl tracking-wider text-on-surface font-black">
+                  MARVEL<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-secondary">CODE</span>
+</div>
+<div class="font-label-md text-label-md tracking-[0.3em] text-on-surface-variant uppercase">
+                  IDEAS • SYSTEMS • IMPACT
+                </div>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm mt-space-md pt-space-sm">
+<div class="flex items-center gap-space-sm text-on-surface-variant font-code-sm text-code-sm">
+<span>Ratio: 1:1 Icon + Type</span>
+<span>•</span>
+<span>Min Print: 24mm</span>
+</div>
+<div class="flex gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors">SVG</button>
+<button class="px-space-sm py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors">PNG 4K</button>
+<button class="px-space-sm py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors">PDF/EPS</button>
+</div>
+</div>
+</div>
+<!-- Right Side: Secondary Horizontal Lockup & Core Brand Attributes -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Secondary Horizontal Lockup Card -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-code-sm text-code-sm text-tertiary">LOCKUP 02 // HORIZONTAL</span>
+<span class="font-label-sm text-label-sm uppercase px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface-variant">Standard Nav &amp; Header</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Deploy for constrained horizontal viewports, web headers, enterprise dashboards, and external partner co-branding.
+              </p>
+</div>
+<!-- Horizontal Presentation Box -->
+<div class="my-space-md p-space-lg rounded-lg bg-surface-container-lowest flex items-center justify-center gap-space-md shadow-inner">
+<div class="w-12 h-12 shrink-0">
+<svg class="w-full h-full" viewbox="0 0 160 160">
+<polygon fill="#2563EB" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#1E40AF" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#8B5CF6" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#7C3AED" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#FFFFFF" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<div class="w-px h-10 bg-outline-variant/40"></div>
+<div class="flex flex-col">
+<div class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">
+                  MARVEL<span class="text-secondary">CODE</span>
+</div>
+<div class="font-code-sm text-[11px] tracking-widest text-on-surface-variant uppercase">
+                  IDEAS / SYSTEMS / IMPACT
+                </div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-code-sm text-code-sm">
+<span>Aspect: 4.8 : 1</span>
+<button class="text-primary hover:text-secondary transition-colors inline-flex items-center gap-1 font-label-md text-label-md">
+                Copy SVG Code <span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Brand Persona & Element Traits -->
+<div class="bg-surface-container-low rounded-xl p-space-lg">
+<div class="font-label-lg text-label-lg text-on-surface uppercase mb-space-sm flex items-center justify-between">
+<span>Brand Elements Checklist</span>
+<span class="text-tertiary material-symbols-outlined">verified</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">view_in_ar</span>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Dimensional</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Faceted 3D surfaces</div>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">terminal</span>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Code-Centric</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Monospace syntax syntax</div>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">all_inclusive</span>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Orbital</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Boundless planetary scale</div>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-primary-container text-[18px]">auto_awesome</span>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Sparkle Polaris</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Guiding engineering star</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 4-Variant Sub-Grid: Dark, Light, Monochrome, Reversed -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md pt-space-xs">
+<!-- Dark BG -->
+<div class="bg-[#0B1020] rounded-xl p-space-md flex flex-col justify-between h-56 shadow-md transition-transform hover:-translate-y-1">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Dark Surface</span>
+<span class="font-code-sm text-[10px] text-tertiary">#0B1020</span>
+</div>
+<div class="flex flex-col items-center justify-center my-auto">
+<div class="w-12 h-12 mb-2">
+<svg class="w-full h-full" viewbox="0 0 160 160">
+<polygon fill="#2563EB" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#1D4ED8" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#8B5CF6" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#6D28D9" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#FFFFFF" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<span class="font-headline-sm text-headline-sm text-white tracking-wider">MARVEL<span class="text-secondary">CODE</span></span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant text-center">Primary Default Lockup</div>
+</div>
+<!-- Light BG -->
+<div class="bg-[#F3F4F6] text-[#0B1020] rounded-xl p-space-md flex flex-col justify-between h-56 shadow-md transition-transform hover:-translate-y-1">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase text-slate-500 tracking-wider">Light Surface</span>
+<span class="font-code-sm text-[10px] text-primary-container">#F3F4F6</span>
+</div>
+<div class="flex flex-col items-center justify-center my-auto">
+<div class="w-12 h-12 mb-2">
+<svg class="w-full h-full" viewbox="0 0 160 160">
+<polygon fill="#2563EB" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#1D4ED8" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#8B5CF6" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#6D28D9" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#FFFFFF" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<span class="font-headline-sm text-headline-sm text-[#0B1020] tracking-wider">MARVEL<span class="text-[#2563EB]">CODE</span></span>
+</div>
+<div class="font-label-sm text-label-sm text-slate-600 text-center">Editorial &amp; Whitepaper Variant</div>
+</div>
+<!-- Monochrome BG -->
+<div class="bg-[#FFFFFF] text-black rounded-xl p-space-md flex flex-col justify-between h-56 shadow-md transition-transform hover:-translate-y-1">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase text-neutral-400 tracking-wider">Monochrome</span>
+<span class="font-code-sm text-[10px] text-neutral-700">100% K</span>
+</div>
+<div class="flex flex-col items-center justify-center my-auto">
+<div class="w-12 h-12 mb-2">
+<svg class="w-full h-full" viewbox="0 0 160 160">
+<polygon fill="#111827" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#374151" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#1F2937" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#111827" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#FFFFFF" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<span class="font-headline-sm text-headline-sm text-black tracking-wider">MARVELCODE</span>
+</div>
+<div class="font-label-sm text-label-sm text-neutral-500 text-center">Laser Print &amp; Stencil Stamp</div>
+</div>
+<!-- Reversed BG -->
+<div class="bg-surface-container-highest text-on-surface rounded-xl p-space-md flex flex-col justify-between h-56 shadow-md transition-transform hover:-translate-y-1">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Reversed (White)</span>
+<span class="font-code-sm text-[10px] text-primary">#FFFFFF</span>
+</div>
+<div class="flex flex-col items-center justify-center my-auto">
+<div class="w-12 h-12 mb-2">
+<svg class="w-full h-full" viewbox="0 0 160 160">
+<polygon fill="#FFFFFF" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#CBD5E1" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#E2E8F0" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#FFFFFF" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#0B1020" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<span class="font-headline-sm text-headline-sm text-white tracking-wider">MARVELCODE</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant text-center">High Contrast Knockout</div>
+</div>
+</div>
+<!-- Isolated App Icon & Mark-Only Tray -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-sm">
+<span class="font-code-sm text-code-sm text-tertiary">ASSET PACK 03</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Application Icons &amp; Badges</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Available as responsive web app icons, macOS dock badges, favicon packages (32px to 512px), and native launcher icons.
+          </p>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-space-md">
+<!-- Squircle App Icon -->
+<div class="flex flex-col items-center gap-space-xs">
+<div class="w-20 h-20 rounded-2xl bg-surface-container-lowest p-3 shadow-xl flex items-center justify-center group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/20 to-secondary-container/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<svg class="w-14 h-14" viewbox="0 0 160 160">
+<polygon fill="#2563EB" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#1D4ED8" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#8B5CF6" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#6D28D9" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#FFFFFF" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">App Icon (Full)</span>
+</div>
+<!-- Mono Icon -->
+<div class="flex flex-col items-center gap-space-xs">
+<div class="w-20 h-20 rounded-2xl bg-white p-3 shadow-xl flex items-center justify-center">
+<svg class="w-14 h-14" viewbox="0 0 160 160">
+<polygon fill="#111827" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#4B5563" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#1F2937" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#111827" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#FFFFFF" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Mono (Black)</span>
+</div>
+<!-- White Icon Squircle -->
+<div class="flex flex-col items-center gap-space-xs">
+<div class="w-20 h-20 rounded-2xl bg-surface-container-highest p-3 shadow-xl flex items-center justify-center">
+<svg class="w-14 h-14" viewbox="0 0 160 160">
+<polygon fill="#FFFFFF" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#CBD5E1" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#94A3B8" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#FFFFFF" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#0B1020" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Solid (White)</span>
+</div>
+<!-- Mark Only Raw -->
+<div class="flex flex-col items-center gap-space-xs">
+<div class="w-20 h-20 rounded-2xl bg-surface-container p-3 flex items-center justify-center">
+<svg class="w-14 h-14" viewbox="0 0 160 160">
+<defs>
+<lineargradient id="markOnlyG" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#2563EB"></stop>
+<stop offset="100%" stop-color="#8B5CF6"></stop>
+</lineargradient>
+</defs>
+<polygon fill="#2563EB" points="32,45 60,30 60,118 32,130"></polygon>
+<polygon fill="#1D4ED8" points="60,30 80,78 60,118"></polygon>
+<polygon fill="#8B5CF6" points="80,78 100,30 100,118"></polygon>
+<polygon fill="#6D28D9" points="100,30 128,45 128,130 100,118"></polygon>
+<text fill="#FFFFFF" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle" x="80" y="88">&lt;/&gt;</text>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Mark Only</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Color Token System -->
+<section class="space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-xs">
+<div>
+<span class="font-code-sm text-code-sm text-tertiary">02 // CHROMATIC FOUNDATION</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Brand Color Architecture</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">
+          Click on any token swatches to instantly copy its parameter hex code into your engineering clipboard.
+        </p>
+</div>
+<!-- Color Swatches Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Swatch 1: Primary Blue -->
+<div class="color-token-card bg-surface-container-low rounded-xl overflow-hidden cursor-pointer group shadow-sm hover:shadow-xl transition-all" data-hex="#2563EB">
+<div class="h-32 bg-[#2563EB] relative p-space-md flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-white uppercase tracking-wider px-2 py-0.5 rounded bg-black/20 self-start">Core Action</span>
+<div class="flex justify-between items-end text-white">
+<span class="font-headline-md text-headline-md font-bold">Primary Blue</span>
+<span class="material-symbols-outlined text-[20px] opacity-0 group-hover:opacity-100 transition-opacity">content_copy</span>
+</div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex justify-between items-center font-code-sm text-code-sm">
+<span class="text-on-surface font-bold">#2563EB</span>
+<span class="text-on-surface-variant">rgb(37, 99, 235)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Trust, high-performance computing, architectural precision, telemetry stability.
+            </p>
+</div>
+</div>
+<!-- Swatch 2: Accent Purple -->
+<div class="color-token-card bg-surface-container-low rounded-xl overflow-hidden cursor-pointer group shadow-sm hover:shadow-xl transition-all" data-hex="#8B5CF6">
+<div class="h-32 bg-[#8B5CF6] relative p-space-md flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-white uppercase tracking-wider px-2 py-0.5 rounded bg-black/20 self-start">Accent Energy</span>
+<div class="flex justify-between items-end text-white">
+<span class="font-headline-md text-headline-md font-bold">Accent Purple</span>
+<span class="material-symbols-outlined text-[20px] opacity-0 group-hover:opacity-100 transition-opacity">content_copy</span>
+</div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex justify-between items-center font-code-sm text-code-sm">
+<span class="text-on-surface font-bold">#8B5CF6</span>
+<span class="text-on-surface-variant">rgb(139, 92, 246)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Creativity, algorithmic imagination, next-generation growth, AI integration.
+            </p>
+</div>
+</div>
+<!-- Swatch 3: Dark Navy -->
+<div class="color-token-card bg-surface-container-low rounded-xl overflow-hidden cursor-pointer group shadow-sm hover:shadow-xl transition-all" data-hex="#0B1020">
+<div class="h-32 bg-[#0B1020] relative p-space-md flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-white uppercase tracking-wider px-2 py-0.5 rounded bg-white/10 self-start">Deep Canvas</span>
+<div class="flex justify-between items-end text-white">
+<span class="font-headline-md text-headline-md font-bold">Dark Navy</span>
+<span class="material-symbols-outlined text-[20px] opacity-0 group-hover:opacity-100 transition-opacity">content_copy</span>
+</div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex justify-between items-center font-code-sm text-code-sm">
+<span class="text-on-surface font-bold">#0B1020</span>
+<span class="text-on-surface-variant">rgb(11, 16, 32)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Stability, boundless void depth, military-grade security focus, low glare.
+            </p>
+</div>
+</div>
+<!-- Swatch 4: Light Gray -->
+<div class="color-token-card bg-surface-container-low rounded-xl overflow-hidden cursor-pointer group shadow-sm hover:shadow-xl transition-all" data-hex="#F3F4F6">
+<div class="h-32 bg-[#F3F4F6] relative p-space-md flex flex-col justify-between text-[#0B1020]">
+<span class="font-label-sm text-label-sm text-slate-800 uppercase tracking-wider px-2 py-0.5 rounded bg-black/10 self-start">Neutral Tint</span>
+<div class="flex justify-between items-end">
+<span class="font-headline-md text-headline-md font-bold">Light Gray</span>
+<span class="material-symbols-outlined text-[20px] opacity-0 group-hover:opacity-100 transition-opacity">content_copy</span>
+</div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex justify-between items-center font-code-sm text-code-sm">
+<span class="text-on-surface font-bold">#F3F4F6</span>
+<span class="text-on-surface-variant">rgb(243, 244, 246)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Specularity, pristine contrast balance, clean typography, editorial clarity.
+            </p>
+</div>
+</div>
+</div>
+<!-- Linear Gradient Banner Specification -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col lg:flex-row items-center justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-md">
+<span class="font-label-sm text-label-sm uppercase px-2 py-0.5 rounded bg-surface-container-highest text-secondary">Gradient Protocol</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Signature Kinetic Gradient</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Interpolation angle: <code class="font-code-sm text-tertiary">135deg</code>. Applied on interactive calls-to-action, glowing telemetry sparklines, and active brand boundaries.
+          </p>
+<div class="font-code-sm text-code-sm text-on-surface pt-space-xs">
+            linear-gradient(135deg, #2563EB 0%, #8B5CF6 100%)
+          </div>
+</div>
+<div class="w-full lg:w-1/2 h-24 rounded-lg bg-gradient-to-r from-[#2563EB] to-[#8B5CF6] p-space-md flex items-center justify-between text-white shadow-[0_0_30px_rgba(37,99,235,0.3)]">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md font-bold tracking-wider uppercase">Blue → Purple</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-md font-label-md text-label-md">
+<span>Innovation</span>
+<span>•</span>
+<span>Creativity</span>
+<span>•</span>
+<span>Future</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Typography & Iconography Hierarchy -->
+<section class="space-y-space-md">
+<div>
+<span class="font-code-sm text-code-sm text-tertiary">03 // DESIGN METRICS</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Typography &amp; Iconography System</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Typography Specimen (7 Cols) -->
+<div class="lg:col-span-7 bg-surface-container-low rounded-xl p-space-lg space-y-space-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface uppercase">Type Hierarchy Specimen</span>
+<span class="font-code-sm text-code-sm text-tertiary">Montserrat / Inter / JetBrains Mono</span>
+</div>
+<!-- Montserrat Specimen -->
+<div class="p-space-md rounded-lg bg-surface-container space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary font-bold">Montserrat</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Headings &amp; Titles • 600 - 800</span>
+</div>
+<div class="space-y-space-xs font-headline-xl text-headline-xl text-on-surface">
+              Turning Ideas into Intelligent Solutions.
+            </div>
+<div class="font-code-sm text-[11px] text-on-surface-variant tracking-wider uppercase">
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ • 0123456789
+            </div>
+</div>
+<!-- Inter Specimen -->
+<div class="p-space-md rounded-lg bg-surface-container space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-secondary font-bold">Inter</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Body &amp; Microcopy • 400 - 600</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+              Every interface in MarvelCode balances dense data throughput with visual lucidity. High contrast text pairings guarantee compliance across diverse operational environments.
+            </p>
+<div class="font-code-sm text-[11px] text-on-surface-variant tracking-wider uppercase">
+              abcdefghijklmnopqrstuvwxyz • !@#$%^&amp;*()
+            </div>
+</div>
+<!-- JetBrains Mono Specimen -->
+<div class="p-space-md rounded-lg bg-surface-container space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-tertiary font-bold">JetBrains Mono</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Code, Telemetry, Key-Values</span>
+</div>
+<pre class="font-code-sm text-code-sm text-tertiary p-space-sm rounded bg-surface-container-lowest overflow-x-auto"><code>const systemEngine = new MarvelCluster({
+  latencyTarget: '1.2ms',
+  encryption: 'Quantum-Safe',
+  nodes: 1024
+});</code></pre>
+</div>
+</div>
+<!-- Neon Iconography Matrix (5 Cols) -->
+<div class="lg:col-span-5 bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface uppercase">Iconography Suite</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Luminous duotone stroke icons (24px vector grid)</p>
+</div>
+<span class="material-symbols-outlined text-secondary">token</span>
+</div>
+<!-- 8 Categorized Icons with Gradient Strokes -->
+<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-space-sm">
+<!-- 1. Development -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm group hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">code</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Development</div>
+<span class="font-code-sm text-[11px] text-on-surface-variant">API / SDK</span>
+</div>
+</div>
+<!-- 2. System Design -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm group hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded bg-secondary-container/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">System Design</div>
+<span class="font-code-sm text-[11px] text-on-surface-variant">Architecture</span>
+</div>
+</div>
+<!-- 3. Data Analysis -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm group hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded bg-tertiary/20 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">bar_chart</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Data Analysis</div>
+<span class="font-code-sm text-[11px] text-on-surface-variant">Real-Time</span>
+</div>
+</div>
+<!-- 4. Innovation -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm group hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Innovation</div>
+<span class="font-code-sm text-[11px] text-on-surface-variant">Neural Synapse</span>
+</div>
+</div>
+<!-- 5. Design -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm group hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded bg-secondary-container/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Design</div>
+<span class="font-code-sm text-[11px] text-on-surface-variant">UI Tokens</span>
+</div>
+</div>
+<!-- 6. Networking -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm group hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded bg-tertiary/20 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Networking</div>
+<span class="font-code-sm text-[11px] text-on-surface-variant">Mesh Grid</span>
+</div>
+</div>
+<!-- 7. Cloud & Infra -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm group hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">cloud</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Cloud &amp; Infra</div>
+<span class="font-code-sm text-[11px] text-on-surface-variant">Bare Metal</span>
+</div>
+</div>
+<!-- 8. Creativity -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm group hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded bg-secondary-container/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Creativity</div>
+<span class="font-code-sm text-[11px] text-on-surface-variant">Ideation Hub</span>
+</div>
+</div>
+</div>
+<div class="p-space-sm rounded bg-surface-container-lowest font-code-sm text-code-sm text-on-surface-variant flex items-center justify-between">
+<span>Render Mode: Monochromatic Stroke 1.5px</span>
+<span class="text-tertiary">Filled = false</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Brand Applications & Real-World Collateral -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-code-sm text-code-sm text-tertiary">04 // ECOSYSTEM APPLICATION</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Hardware, Apparel &amp; Collateral</h2>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant hidden sm:inline-block">Field Mockups • 2025 Edition</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Application 1: Corporate Apparel & Developer Gear -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col group shadow-md hover:shadow-xl transition-all">
+<div class="relative h-64 overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A premium matte black developer hoodie mock-up placed neatly alongside high-end stationery. In the center is the glowing geometric MarvelCode 3D blue and purple faceted logo. Neon ambient lighting highlights the texture of the fabric in deep navy and cyber electric accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGdjNxR7AZP86172sgWfEQ6PIs-0V938TMioenv_zXWQnZHfJyZ3JxoDeL5JS7GDQ6aUG4BRv8FZrpMeEAxeIgABTt4AZbxMnAy-XcPA8BmhAXLexxBsL6_hi3mYcgHQUgWLlW8ZJ6ffSRq4TFPCp-LsxGbPbkLSSxA-Fi81gi9qf-JrancbYZD_uNjormajMlwJPygY9PV24E-3rnEpeCnn5I73ABJcBZkwrFON6TO-6CVg_Kc0oF"/>
+<div class="absolute top-3 left-3 px-space-sm py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary uppercase">
+              Merchandise
+            </div>
+</div>
+<div class="p-space-md space-y-space-xs flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Engineering Uniform &amp; Wearables</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Heavyweight 480gsm organic cotton hoodie featuring embroidered chest glyph and reflective sleeve typography.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-sm font-code-sm text-code-sm text-tertiary">
+<span>Spec: Pantone Reflex Blue C</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Application 2: Hardware & Developer Rig Collateral -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col group shadow-md hover:shadow-xl transition-all">
+<div class="relative h-64 overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A sleek dark matte aluminum workstation laptop and insulated matte black metal water bottle. The laptop lid displays an illuminated neon blue and purple MarvelCode faceted icon. Dark moody studio setting with blue edge backlighting and clean professional desktop arrangement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDLtl8iMMXslj15_g5NwuMqYWXxx5velWQIXGgzCBn2V7jJwxU_vb0cKkq_lAoWwPLMveOyBWQgMcNNyC3IR0VHR23L_QGmZMtqx4Z-YSea6YaKUzzB485aO_i3iwBxZVxCVstdJfz7hMI5BBZ86MtwjT-4cJoavyTXUeLId6wd_VwQl0IaVONO2tt-fwVr0tjHd5dMHUiiPacjPfp9OO6gk7Q2kGjWfH91Kbdzs9nUmSxT_LnH2cF"/>
+<div class="absolute top-3 left-3 px-space-sm py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-secondary uppercase">
+              Hardware
+            </div>
+</div>
+<div class="p-space-md space-y-space-xs flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Workstations &amp; Field Equipment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Anodized dark aluminum surfaces with laser-etched monochrome insignia and thermo-insulated flasks.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-sm font-code-sm text-code-sm text-secondary">
+<span>Spec: Matte Laser 1200 DPI</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Application 3: Mobile Companion App & Posters -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col group shadow-md hover:shadow-xl transition-all">
+<div class="relative h-64 overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A smartphone presenting the MarvelCode dark mode mobile telemetry application, resting next to architectural brand poster prints against a dark futuristic cyber city background. Neon violet reflections, vibrant clean lines, and deep navy backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK11ARBenKMyayGYIjWvU7O4Umgk-3URjzbqm6IX_gGn1tnWI-fzsfKoIRRNJvFFeSx_Mq0ATjkru3zZf51fFYyOmdwRxIuwNlRfzo0rjR_tNZodbsaOawnm5LTcqvdhZiYBSA8PHp60KXPtXMbt1rIfMJZPjr2TbG-WvwpDtGO084ZVgdL4b_PNVJvGGU42Vaqg-Bzs4i1Iih6lLokLB-kAt8HK6D5eBf0YemfQFsb_5Rv5R_AP9S"/>
+<div class="absolute top-3 left-3 px-space-sm py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-tertiary uppercase">
+              Digital Mobile
+            </div>
+</div>
+<div class="p-space-md space-y-space-xs flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mobile Systems &amp; Spatial Posters</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Zero-latency iOS and Android system monitor app with ambient OLED dark mode and holographic badges.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-sm font-code-sm text-code-sm text-primary">
+<span>Spec: Swift / Kotlin Native</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Brand Governance & Compliance Principles -->
+<section class="bg-surface-container-low rounded-xl p-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<span class="font-code-sm text-code-sm text-tertiary">05 // COMPLIANCE</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">5 Golden Brand Commandments</h2>
+</div>
+<span class="font-label-sm text-label-sm uppercase px-space-sm py-1 rounded bg-surface-container font-bold text-on-surface-variant">Mandatory Protocol</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-space-md">
+<!-- Rule 01 -->
+<div class="p-space-md rounded-lg bg-surface-container space-y-space-xs relative overflow-hidden">
+<span class="font-headline-xl text-headline-xl text-primary font-black opacity-40">01</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">Use Logo Consistently</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Always employ the verified vector marks. Never alter the 3D angle, recolor facets arbitrarily, or replace the slash glyph.
+          </p>
+</div>
+<!-- Rule 02 -->
+<div class="p-space-md rounded-lg bg-surface-container space-y-space-xs relative overflow-hidden">
+<span class="font-headline-xl text-headline-xl text-secondary font-black opacity-40">02</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">Keep Clear Space</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Preserve a perimeter minimum equal to 1X height of the code element around the lockup boundary.
+          </p>
+</div>
+<!-- Rule 03 -->
+<div class="p-space-md rounded-lg bg-surface-container space-y-space-xs relative overflow-hidden">
+<span class="font-headline-xl text-headline-xl text-tertiary font-black opacity-40">03</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">Exact Hex Fidelity</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Stick precisely to verified tokens (#2563EB, #8B5CF6, #0B1020). Never compromise with desaturated tones.
+          </p>
+</div>
+<!-- Rule 04 -->
+<div class="p-space-md rounded-lg bg-surface-container space-y-space-xs relative overflow-hidden">
+<span class="font-headline-xl text-headline-xl text-primary font-black opacity-40">04</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">Strict Typography</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Montserrat for headings, Inter for high-density reading, JetBrains Mono for telemetry metrics and code blocks.
+          </p>
+</div>
+<!-- Rule 05 -->
+<div class="p-space-md rounded-lg bg-surface-container space-y-space-xs relative overflow-hidden">
+<span class="font-headline-xl text-headline-xl text-secondary font-black opacity-40">05</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">Global Cohesion</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Ensure cross-platform alignment across IDE extensions, web portals, mobile touchpoints, and hardware gear.
+          </p>
+</div>
+</div>
+</section>
+<!-- Section 6: Interactive Terminal / Asset Download Bar -->
+<section class="p-space-lg rounded-xl bg-surface-container-lowest flex flex-col md:flex-row items-center justify-between gap-space-md shadow-2xl">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-container to-secondary-container flex items-center justify-center text-white shrink-0 shadow-lg">
+<span class="material-symbols-outlined">folder_zip</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Download MarvelCode Master Assets v4.8</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Includes Adobe Illustrator .AI, Figma Tokens JSON, SVG Icons, and Print Color Guides.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full md:w-auto justify-end">
+<button class="px-space-md py-2 rounded-lg bg-surface-container font-label-lg text-label-lg text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-2" id="copyTokensBtn">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+          Copy CSS Tokens
+        </button>
+<button class="px-space-md py-2 rounded-lg bg-gradient-to-r from-[#2563EB] to-[#8B5CF6] font-headline-sm text-headline-sm text-white hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all flex items-center gap-2" id="instantDownloadBtn">
+<span class="material-symbols-outlined text-[18px]">cloud_download</span>
+          Download (84 MB)
+        </button>
+</div>
+</section>
+</div>
+<!-- Microinteraction Script for Clipboard and Feedback -->
+<script>
+    document.querySelectorAll('.color-token-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const hex = card.getAttribute('data-hex');
+        navigator.clipboard.writeText(hex).then(() => {
+          const originalDesc = card.querySelector('.text-on-surface-variant');
+          const prevText = originalDesc.textContent;
+          originalDesc.textContent = 'Copied to clipboard! ' + hex;
+          originalDesc.classList.add('text-primary');
+          setTimeout(() => {
+            originalDesc.textContent = prevText;
+            originalDesc.classList.remove('text-primary');
+          }, 1800);
+        });
+      });
+    });
+
+    const copyTokensBtn = document.getElementById('copyTokensBtn');
+    if (copyTokensBtn) {
+      copyTokensBtn.addEventListener('click', () => {
+        const tokens = `:root {\n  --mc-primary-blue: #2563EB;\n  --mc-accent-purple: #8B5CF6;\n  --mc-dark-navy: #0B1020;\n  --mc-light-gray: #F3F4F6;\n  --mc-gradient: linear-gradient(135deg, #2563EB, #8B5CF6);\n}`;
+        navigator.clipboard.writeText(tokens).then(() => {
+          const originalHtml = copyTokensBtn.innerHTML;
+          copyTokensBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span> Copied Tokens!';
+          copyTokensBtn.classList.add('text-[#10B981]');
+          setTimeout(() => {
+            copyTokensBtn.innerHTML = originalHtml;
+            copyTokensBtn.classList.remove('text-[#10B981]');
+          }, 2000);
+        });
+      });
+    }
+
+    const downloadSuiteBtn = document.getElementById('downloadSuiteBtn');
+    const instantDownloadBtn = document.getElementById('instantDownloadBtn');
+    [downloadSuiteBtn, instantDownloadBtn].forEach(btn => {
+      if(btn) {
+        btn.addEventListener('click', () => {
+          const originalHtml = btn.innerHTML;
+          btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Preparing Kit...';
+          setTimeout(() => {
+            btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span> Archive Ready';
+            setTimeout(() => {
+              btn.innerHTML = originalHtml;
+            }, 2500);
+          }, 1200);
+        });
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] mt-space-xl"><div class="max-w-7xl mx-auto px-gutter py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-lg mb-space-xl"><div class="space-y-space-sm md:col-span-1"><div class="flex items-center gap-space-xs"><span class="font-headline-lg text-headline-lg text-primary">MarvelCode</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Ideas / Systems / Impact. Next-generation cyber-intelligent enterprise infrastructure and high-throughput architectural ecosystems.</p><div class="flex items-center gap-space-xs pt-space-xs"><span class="font-code-sm text-code-sm text-tertiary">v4.8.2-prod-synapse</span></div></div><div><div class="font-label-lg text-label-lg text-on-surface uppercase mb-space-sm">Platform</div><ul class="space-y-space-xs font-body-sm text-body-sm"><li class="text-on-surface-variant hover:text-on-surface"><a data-path="solutions" href="#">Solutions Spectrum</a></li><li class="text-on-surface-variant hover:text-on-surface"><a data-path="platform-and-tech" href="#">Architecture &amp; Tech</a></li><li class="text-on-surface-variant hover:text-on-surface"><a data-path="analytics" href="#">Real-Time Telemetry</a></li><li class="text-on-surface-variant hover:text-on-surface"><a data-path="developer-api" href="#">System API &amp; SDK</a></li></ul></div><div><div class="font-label-lg text-label-lg text-on-surface uppercase mb-space-sm">Resources</div><ul class="space-y-space-xs font-body-sm text-body-sm"><li class="text-on-surface-variant hover:text-on-surface"><a data-path="documentation" href="#">Documentation</a></li><li class="text-on-surface-variant hover:text-on-surface"><a data-path="brand-system" href="#">Design &amp; Brand System</a></li><li class="text-on-surface-variant hover:text-on-surface"><a data-path="security" href="#">Security &amp; Enclaves</a></li><li class="text-on-surface-variant hover:text-on-surface"><a data-path="status" href="#">Global Nodes Status</a></li></ul></div><div><div class="font-label-lg text-label-lg text-on-surface uppercase mb-space-sm">Telemetry &amp; Health</div><div class="p-space-sm rounded-lg bg-surface-container space-y-space-xs"><div class="flex items-center justify-between font-code-sm text-code-sm"><span class="text-on-surface-variant">Core Latency</span><span class="text-tertiary font-bold">1.2ms</span></div><div class="flex items-center justify-between font-code-sm text-code-sm"><span class="text-on-surface-variant">Cluster Load</span><span class="text-secondary font-bold">42.8%</span></div><div class="flex items-center justify-between font-code-sm text-code-sm"><span class="text-on-surface-variant">Encryption</span><span class="text-[#10B981] font-bold">Quantum-Safe</span></div></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md font-label-sm text-label-sm text-on-surface-variant"><div class="flex items-center gap-space-md"><span class="text-on-surface">© 2025 MarvelCode Inc. All rights reserved.</span><span>Ideas / Systems / Impact</span></div><div class="flex items-center gap-space-md"><span>Privacy Protocol</span><span>Terms of Service</span><span>Security Disclosure</span></div></div></div></footer></body></html>

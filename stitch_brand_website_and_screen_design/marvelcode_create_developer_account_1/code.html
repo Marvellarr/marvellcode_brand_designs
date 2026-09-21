@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Montserrat:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"secondary":"#d0bcff","on-secondary-fixed":"#23005c","on-tertiary":"#00354a","on-secondary-fixed-variant":"#5516be","secondary-fixed-dim":"#d0bcff","surface-dim":"#0e1323","inverse-primary":"#0053db","secondary-container":"#571bc1","on-surface-variant":"#c3c6d7","on-primary":"#002a78","error":"#ffb4ab","surface-bright":"#34394a","surface-tint":"#b4c5ff","on-primary-fixed-variant":"#003ea8","on-surface":"#dee1f9","tertiary-fixed-dim":"#7bd0ff","surface":"#0e1323","surface-container-highest":"#2f3446","surface-container-high":"#25293a","tertiary":"#7bd0ff","outline-variant":"#434655","on-tertiary-fixed-variant":"#004c69","on-primary-fixed":"#00174b","inverse-on-surface":"#2b3041","on-primary-container":"#eeefff","on-error":"#690005","tertiary-container":"#00759f","tertiary-fixed":"#c4e7ff","surface-container-lowest":"#080d1d","on-tertiary-fixed":"#001e2c","error-container":"#93000a","primary":"#b4c5ff","background":"#0e1323","surface-container-low":"#161b2b","primary-fixed-dim":"#b4c5ff","surface-container":"#1a1f30","secondary-fixed":"#e9ddff","inverse-surface":"#dee1f9","on-tertiary-container":"#e1f2ff","on-background":"#dee1f9","on-secondary-container":"#c4abff","outline":"#8d90a0","on-secondary":"#3c0091","primary-container":"#2563eb","surface-variant":"#2f3446","on-error-container":"#ffdad6","primary-fixed":"#dbe1ff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1.5rem","space-md":"1rem","margin-mobile":"1.25rem","space-xs":"0.25rem","gutter-mobile":"1rem","margin":"3rem","space-lg":"1.5rem","space-sm":"0.5rem","space-xl":"2.5rem"},"fontFamily":{"label-md":["Inter"],"headline-sm":["Montserrat"],"headline-xl-mobile":["Montserrat"],"display-md":["Montserrat"],"code-sm":["JetBrains Mono"],"body-md":["Inter"],"label-sm":["Inter"],"display-lg-mobile":["Montserrat"],"body-lg":["Inter"],"headline-md":["Montserrat"],"headline-lg":["Montserrat"],"label-lg":["Inter"],"body-sm":["Inter"],"display-lg":["Montserrat"],"headline-xl":["Montserrat"],"display-md-mobile":["Montserrat"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"display-md":["44px",{"lineHeight":"52px","letterSpacing":"-0.02em","fontWeight":"700"}],"code-sm":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"500"}],"body-md":["15px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.1em","fontWeight":"600"}],"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"800"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"0em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.03em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"20px","letterSpacing":"0.005em","fontWeight":"400"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-xl":["32px",{"lineHeight":"40px","letterSpacing":"-0.015em","fontWeight":"700"}],"display-md-mobile":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex items-center justify-center"><main class="w-full max-w-lg mx-auto p-gutter bg-surface"><div class="flex flex-col w-full">
+<div class="relative w-full rounded-xl overflow-hidden bg-surface-container-low shadow-xl">
+<div class="absolute -top-32 -left-20 w-96 h-96 rounded-full bg-primary-container/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-16 w-80 h-80 rounded-full bg-secondary-container/25 blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-0 relative z-10">
+<!-- Brand & Telemetry Column -->
+<div class="lg:col-span-5 p-gutter lg:p-space-xl flex flex-col justify-between bg-surface-container-lowest/80 backdrop-blur-md">
+<div class="flex flex-col gap-space-lg">
+<!-- Logo & Brand Header -->
+<div class="flex items-center gap-space-sm">
+<div class="relative flex items-center justify-center w-12 h-12 rounded-lg bg-surface-container-high shadow-md overflow-hidden">
+<svg class="w-8 h-8 drop-shadow-[0_0_8px_rgba(123,208,255,0.7)]" fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 75L16 28L42 58L50 49L26 21L64 21L84 46L84 75L62 75L62 48L44 68L34 56L34 75H16Z" fill="url(#brand-grad-m)"></path>
+<path d="M41 53L35 60L41 67" stroke="#7bd0ff" stroke-linecap="round" stroke-width="3"></path>
+<path d="M59 53L65 60L59 67" stroke="#d0bcff" stroke-linecap="round" stroke-width="3"></path>
+<path d="M53 50L47 70" stroke="#dee1f9" stroke-linecap="round" stroke-width="3"></path>
+<ellipse cx="50" cy="50" rx="44" ry="18" stroke="url(#brand-grad-ring)" stroke-dasharray="70 20" stroke-width="2.5" transform="rotate(-22 50 50)"></ellipse>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="brand-grad-m" x1="16" x2="84" y1="21" y2="75">
+<stop stop-color="#2563eb"></stop>
+<stop offset="0.55" stop-color="#7bd0ff"></stop>
+<stop offset="1" stop-color="#d0bcff"></stop>
+</lineargradient>
+<lineargradient gradientunits="userSpaceOnUse" id="brand-grad-ring" x1="6" x2="94" y1="50" y2="50">
+<stop stop-color="#2563eb"></stop>
+<stop offset="0.7" stop-color="#d0bcff"></stop>
+<stop offset="1" stop-color="#7bd0ff"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">MARVELL</span>
+<span class="font-headline-sm text-headline-sm tracking-tight bg-gradient-to-r from-tertiary via-secondary to-primary bg-clip-text text-transparent">CODE</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-[0.25em]">IDEAS / SYSTEMS / IMPACT</span>
+</div>
+</div>
+<!-- Value Pitch -->
+<div class="flex flex-col gap-space-xs mt-space-sm">
+<span class="inline-flex items-center gap-2 px-space-sm py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-label-sm text-label-sm tracking-widest uppercase w-max">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+              Architect Suite v4.9
+            </span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+              Start Building Intelligent Systems.
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Spin up sandboxed multi-region runtime environments, high-throughput microservices, and AI-native developer telemetry within seconds.
+            </p>
+</div>
+<!-- Feature Metric List -->
+<div class="flex flex-col gap-space-md mt-space-xs">
+<div class="p-space-md rounded-lg bg-surface-container/60 backdrop-blur-sm shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-md bg-primary-container/20 flex items-center justify-center shrink-0 text-tertiary">
+<span class="material-symbols-outlined">cloud_sync</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Instant Cloud Clusters</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Zero-config Kubernetes staging nodes pre-warmed for instant pull requests.</p>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container/60 backdrop-blur-sm shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-md bg-secondary-container/20 flex items-center justify-center shrink-0 text-secondary">
+<span class="material-symbols-outlined">speed</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Enterprise-Grade Telemetry</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sub-millisecond trace ingestion with real-time anomaly detection pipelines.</p>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container/60 backdrop-blur-sm shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-md bg-surface-container-highest flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Collaborative Workspaces</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Multi-cursor live debugging, shared ephemeral databases, and integrated terminals.</p>
+</div>
+</div>
+</div>
+<!-- Live Network Status Spark -->
+<div class="p-space-md rounded-lg bg-surface-container-low shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-code-sm text-code-sm text-on-surface-variant">GLOBAL FABRIC CLUSTER</span>
+<span class="font-label-md text-label-md text-tertiary">99.998% UPTIME • 14 POPS ACTIVE</span>
+</div>
+<svg class="w-24 h-7 overflow-visible" fill="none" viewbox="0 0 100 28">
+<path d="M0 20L15 17L30 22L45 10L60 14L75 6L90 12L100 4" stroke="#7bd0ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<circle class="animate-ping" cx="100" cy="4" fill="#7bd0ff" r="3"></circle>
+<circle cx="100" cy="4" fill="#dee1f9" r="2.5"></circle>
+</svg>
+</div>
+</div>
+<!-- Social Proof Testimonial Card -->
+<div class="mt-space-lg pt-space-md border-t-0 p-space-md rounded-lg bg-surface-container/50">
+<div class="flex items-center gap-space-sm mb-space-xs">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Headshot portrait of a senior tech engineering director in front of glass architectural office panels, soft modern cinematic lighting, cyan and cool blue atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaWzA4NsHny_pn7S3tAveZ3tNmOB9pdyg7QshN6kUZdh768Hh4fQRR2rkZjwQVpDUrkJQzulGA4yL8GLG6iB4r7DdQ2DWXiU63_buf0JCMz-b-PXFDDZZl37YuTpWi09r_iGV6BE68tLhxMsKbRYxFoH2GN1hazng3qc4kHdkGTue-T_oDkaVymZz0w9dF8PqwsmeAr6im8prwg5ElMqdaffLCCMWQ15HFfQaiwMte4SlyiQ9rTLtI"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Elena Rostova</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">VP of Platform @ HyperScale Systems</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic">
+            “MarvelCode reduced our staging deployment cycle from 42 minutes to 8 seconds. Our architects will never look back.”
+          </p>
+</div>
+</div>
+<!-- Registration Form Column -->
+<div class="lg:col-span-7 p-gutter lg:p-space-xl flex flex-col justify-center bg-surface-container/40">
+<div class="max-w-xl mx-auto w-full flex flex-col gap-space-md">
+<!-- Form Header -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Create your MarvelCode Account</h1>
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold tracking-wider">
+                TIER-1 ACCESS
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Free 14-day trial on enterprise tier. No credit card required.
+            </p>
+</div>
+<!-- SSO Fast Registration Providers -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mt-space-xs">
+<button class="flex items-center justify-center gap-space-sm px-space-md py-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors shadow-sm text-on-surface group" type="button">
+<svg class="w-5 h-5 fill-current text-on-surface group-hover:text-primary transition-colors" viewbox="0 0 24 24">
+<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
+</svg>
+<span class="font-label-lg text-label-lg">Continue with GitHub</span>
+</button>
+<button class="flex items-center justify-center gap-space-sm px-space-md py-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors shadow-sm text-on-surface group" type="button">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M12 5c1.54 0 2.92.54 4.01 1.43l3.01-3.01C17.21 1.76 14.77 1 12 1 7.42 1 3.55 3.63 1.68 7.45l3.66 2.84C6.21 7.21 8.86 5 12 5z" fill="#EA4335"></path>
+<path d="M23.49 12.28c0-.82-.07-1.6-.2-2.28H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58l3.71 2.88c2.16-1.99 3.71-4.93 3.71-8.69z" fill="#4285F4"></path>
+<path d="M5.34 14.71c-.24-.71-.38-1.47-.38-2.26 0-.79.14-1.55.38-2.26L1.68 7.35C.61 9.48 0 11.66 0 14.45s.61 4.97 1.68 7.1l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 23c3.24 0 5.95-1.08 7.93-2.91l-3.71-2.88c-1.07.72-2.45 1.16-4.22 1.16-3.14 0-5.79-2.21-6.66-5.29L1.68 15.92C3.55 19.82 7.42 23 12 23z" fill="#34A853"></path>
+</svg>
+<span class="font-label-lg text-label-lg">Continue with Google</span>
+</button>
+</div>
+<!-- Divider -->
+<div class="relative flex items-center justify-center my-1">
+<div class="w-full h-px bg-surface-container-highest"></div>
+<span class="absolute px-space-md bg-surface-container font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">
+              OR WORK EMAIL
+            </span>
+</div>
+<!-- Direct Sign Up Form -->
+<form class="flex flex-col gap-space-md" id="signup-form" onsubmit="return false;">
+<!-- Full Name & Email Stack -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="full-name">
+<span>Full Name</span>
+<span class="text-on-surface-variant text-label-sm">Required</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]">person</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="full-name" placeholder="Ada Lovelace" required="" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="work-email">
+<span>Work Email</span>
+<span class="text-on-surface-variant text-label-sm">Enterprise ID</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]">alternate_email</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="work-email" placeholder="ada@domain.engineering" required="" type="email"/>
+</div>
+</div>
+</div>
+<!-- Password & Interactive Strength Meter -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface" for="account-password">Secure Passkey / Password</label>
+<span class="font-code-sm text-code-sm text-on-surface-variant uppercase tracking-wider" id="strength-label">Complexity: Neutral</span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]">lock</span>
+<input class="w-full pl-10 pr-11 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="account-password" placeholder="At least 10 characters with symbols" required="" type="password"/>
+<button class="absolute right-3 text-on-surface-variant hover:text-on-surface flex items-center" id="toggle-pw-visibility" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+<!-- Real-time Strength Indicator Bars -->
+<div class="grid grid-cols-4 gap-1.5 mt-1">
+<div class="h-1.5 rounded-full bg-surface-container-highest transition-colors" id="bar-len"></div>
+<div class="h-1.5 rounded-full bg-surface-container-highest transition-colors" id="bar-num"></div>
+<div class="h-1.5 rounded-full bg-surface-container-highest transition-colors" id="bar-mix"></div>
+<div class="h-1.5 rounded-full bg-surface-container-highest transition-colors" id="bar-sym"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mt-0.5">
+<span>10+ chars</span>
+<span>Numerals</span>
+<span>Mixed casing</span>
+<span>Special glyph</span>
+</div>
+</div>
+<!-- Role / Account Archetype Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Select Primary Primary Discipline</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="role-type" type="radio" value="dev"/>
+<div class="px-space-sm py-2 rounded-lg bg-surface-container-low text-center peer-checked:bg-primary-container peer-checked:text-on-primary-container transition-all shadow-sm flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span class="font-label-sm text-label-sm font-semibold truncate w-full">Software Eng</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="role-type" type="radio" value="arch"/>
+<div class="px-space-sm py-2 rounded-lg bg-surface-container-low text-center peer-checked:bg-primary-container peer-checked:text-on-primary-container transition-all shadow-sm flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">architecture</span>
+<span class="font-label-sm text-label-sm font-semibold truncate w-full">Systems Arch</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="role-type" type="radio" value="ai"/>
+<div class="px-space-sm py-2 rounded-lg bg-surface-container-low text-center peer-checked:bg-primary-container peer-checked:text-on-primary-container transition-all shadow-sm flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">neurology</span>
+<span class="font-label-sm text-label-sm font-semibold truncate w-full">AI &amp; Data</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="role-type" type="radio" value="exec"/>
+<div class="px-space-sm py-2 rounded-lg bg-surface-container-low text-center peer-checked:bg-primary-container peer-checked:text-on-primary-container transition-all shadow-sm flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">shield_person</span>
+<span class="font-label-sm text-label-sm font-semibold truncate w-full">Enterprise Exec</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Agreement Checkbox -->
+<div class="flex items-start gap-space-sm mt-1">
+<input class="mt-1 w-4 h-4 rounded bg-surface-container-lowest accent-primary-container focus:ring-0 focus:outline-none cursor-pointer" id="terms-agree" required="" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant select-none" for="terms-agree">
+                I agree to the <a class="text-primary hover:underline" href="#">Terms of Service</a>, <a class="text-primary hover:underline" href="#">Privacy Policy</a>, and MarvelCode <a class="text-primary hover:underline" href="#">Acceptable Telemetry Charter</a>.
+              </label>
+</div>
+<!-- Primary Submission CTA Button -->
+<button class="w-full relative group overflow-hidden py-3.5 px-space-lg rounded-lg bg-gradient-to-r from-primary-container via-secondary-container to-tertiary-container text-on-primary-container font-headline-sm text-headline-sm tracking-wide shadow-xl hover:shadow-[0_0_24px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-space-sm" id="submit-btn" type="submit">
+<span class="relative z-10 font-bold">Launch Your Workspace</span>
+<span class="material-symbols-outlined relative z-10 transition-transform group-hover:translate-x-1">rocket_launch</span>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+<!-- Secondary Sign In Link -->
+<div class="flex items-center justify-center gap-1.5 text-center mt-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Already have an active cluster?</span>
+<a class="font-label-md text-label-md text-primary font-semibold hover:text-tertiary transition-colors" href="#">Sign In to Console →</a>
+</div>
+</form>
+<!-- Security Badges Footer -->
+<div class="pt-space-md mt-space-sm flex flex-wrap items-center justify-between gap-y-space-sm gap-x-space-md text-on-surface-variant">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock</span>
+<span>256-BIT ENCRYPTION</span>
+</div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span>SOC-2 TYPE II</span>
+</div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">gavel</span>
+<span>GDPR READY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const pwInput = document.getElementById('account-password');
+    const toggleBtn = document.getElementById('toggle-pw-visibility');
+    const strengthLabel = document.getElementById('strength-label');
+    const barLen = document.getElementById('bar-len');
+    const barNum = document.getElementById('bar-num');
+    const barMix = document.getElementById('bar-mix');
+    const barSym = document.getElementById('bar-sym');
+    const form = document.getElementById('signup-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (toggleBtn && pwInput) {
+      toggleBtn.addEventListener('click', () => {
+        const isPw = pwInput.type === 'password';
+        pwInput.type = isPw ? 'text' : 'password';
+        toggleBtn.firstElementChild.textContent = isPw ? 'visibility_off' : 'visibility';
+      });
+    }
+
+    if (pwInput) {
+      pwInput.addEventListener('input', () => {
+        const val = pwInput.value;
+        const hasLen = val.length >= 10;
+        const hasNum = /[0-9]/.test(val);
+        const hasMix = /[a-z]/.test(val) && /[A-Z]/.test(val);
+        const hasSym = /[^a-zA-Z0-9]/.test(val);
+
+        barLen.className = 'h-1.5 rounded-full transition-colors ' + (hasLen ? 'bg-tertiary' : 'bg-surface-container-highest');
+        barNum.className = 'h-1.5 rounded-full transition-colors ' + (hasNum ? 'bg-tertiary' : 'bg-surface-container-highest');
+        barMix.className = 'h-1.5 rounded-full transition-colors ' + (hasMix ? 'bg-secondary' : 'bg-surface-container-highest');
+        barSym.className = 'h-1.5 rounded-full transition-colors ' + (hasSym ? 'bg-primary' : 'bg-surface-container-highest');
+
+        const score = [hasLen, hasNum, hasMix, hasSym].filter(Boolean).length;
+        if (score === 0) {
+          strengthLabel.textContent = 'Complexity: Empty';
+          strengthLabel.className = 'font-code-sm text-code-sm text-on-surface-variant uppercase tracking-wider';
+        } else if (score < 2) {
+          strengthLabel.textContent = 'Complexity: Weak';
+          strengthLabel.className = 'font-code-sm text-code-sm text-error uppercase tracking-wider';
+        } else if (score < 4) {
+          strengthLabel.textContent = 'Complexity: Moderate';
+          strengthLabel.className = 'font-code-sm text-code-sm text-secondary uppercase tracking-wider';
+        } else {
+          strengthLabel.textContent = 'Complexity: Fortress Grade';
+          strengthLabel.className = 'font-code-sm text-code-sm text-tertiary uppercase tracking-wider font-semibold';
+        }
+      });
+    }
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const origContent = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <span class="material-symbols-outlined animate-spin text-[20px]">sync</span>
+          <span class="font-bold">Provisioning Cluster Node...</span>
+        `;
+        setTimeout(() => {
+          submitBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+            <span class="font-bold">Environment Ready &bull; Redirecting</span>
+          `;
+          setTimeout(() => {
+            submitBtn.innerHTML = origContent;
+            submitBtn.disabled = false;
+          }, 3500);
+        }, 1600);
+      });
+    }
+  })();
+</script></main></body></html>
