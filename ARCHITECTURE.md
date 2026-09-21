@@ -164,6 +164,154 @@ Recommended route behavior:
 
 Route guards provide user experience, not security. The API remains the authority for access decisions.
 
+## 5. Page-to-Page Frontend Flow
+
+The editable flow is available in [`FRONTEND_USER_FLOW.mmd`](FRONTEND_USER_FLOW.mmd), with a rendered preview at [`FRONTEND_USER_FLOW.png`](FRONTEND_USER_FLOW.png).
+
+The frontend should be designed as one connected journey. Every page has a clear entry point, next action, back path, and failure path. The following flow is the navigation contract for implementation.
+
+```mermaid
+flowchart TD
+  START[Visitor opens site] --> HOME[Home]
+  HOME --> SOLUTIONS[Solutions]
+  HOME --> PLATFORM[Platform overview]
+  HOME --> DOCS[Documentation]
+  HOME --> STATUS[System status]
+  HOME --> CONTACT[Contact]
+  HOME --> LOGIN[Login]
+
+  SOLUTIONS --> CONTACT
+  PLATFORM --> LOGIN
+  DOCS --> LOGIN
+  STATUS --> HOME
+  CONTACT --> CONTACT_OK[Contact confirmation]
+  CONTACT_OK --> HOME
+
+  LOGIN --> AUTH_CHECK{Credentials valid?}
+  AUTH_CHECK -->|No| LOGIN_ERROR[Login error]
+  LOGIN_ERROR --> LOGIN
+  AUTH_CHECK -->|Yes| WORKSPACE_CHECK{Workspace available?}
+  LOGIN --> CREATE[Create account]
+  LOGIN --> RECOVER[Forgot password]
+  CREATE --> VERIFY[Verify email]
+  VERIFY --> LOGIN
+  RECOVER --> RESET[Reset password]
+  RESET --> LOGIN
+
+  WORKSPACE_CHECK -->|No| INVITE[No workspace / invitation state]
+  WORKSPACE_CHECK -->|Yes| OVERVIEW[Workspace overview]
+  INVITE --> SELECT[Select or join workspace]
+  SELECT --> OVERVIEW
+
+  OVERVIEW --> SERVICES[Services]
+  OVERVIEW --> DEPLOYMENTS[Deployments]
+  OVERVIEW --> MODELS[Models]
+  OVERVIEW --> ANALYTICS[Analytics]
+  OVERVIEW --> TOOLKIT[Toolkit]
+  OVERVIEW --> SETTINGS[Settings]
+  OVERVIEW --> DOCS_APP[Workspace documentation]
+
+  SERVICES --> SERVICE_DETAIL[Service detail]
+  SERVICE_DETAIL --> DEPLOY_CREATE[Create deployment]
+  DEPLOYMENTS --> DEPLOY_DETAIL[Deployment detail]
+  DEPLOY_CREATE --> DEPLOY_DETAIL
+  DEPLOY_DETAIL --> DEPLOY_PROGRESS[Deployment progress]
+  DEPLOY_PROGRESS --> DEPLOY_SUCCESS[Deployment success]
+  DEPLOY_PROGRESS --> DEPLOY_FAILURE[Deployment failure]
+  DEPLOY_SUCCESS --> DEPLOY_DETAIL
+  DEPLOY_FAILURE --> DEPLOY_DETAIL
+
+  MODELS --> MODEL_DETAIL[Model detail]
+  ANALYTICS --> REPORT_DETAIL[Report detail]
+  TOOLKIT --> TOOL_RESULT[Tool result]
+  DOCS_APP --> DOC_DETAIL[Documentation detail]
+
+  SETTINGS --> PROFILE[Profile settings]
+  SETTINGS --> MEMBERS[Members and access]
+  SETTINGS --> INTEGRATIONS[Integrations]
+  SETTINGS --> NOTIFICATIONS[Notification settings]
+  PROFILE --> SETTINGS
+  MEMBERS --> SETTINGS
+  INTEGRATIONS --> SETTINGS
+  NOTIFICATIONS --> SETTINGS
+
+  OVERVIEW --> SESSION{Session valid?}
+  SERVICES --> SESSION
+  DEPLOYMENTS --> SESSION
+  MODELS --> SESSION
+  ANALYTICS --> SESSION
+  TOOLKIT --> SESSION
+  SETTINGS --> SESSION
+  SESSION -->|Expired| REAUTH[Session expired]
+  REAUTH --> LOGIN
+
+  classDef public fill:#2563eb,stroke:#93c5fd,color:#fff,stroke-width:2px;
+  classDef account fill:#7c3aed,stroke:#c4b5fd,color:#fff,stroke-width:2px;
+  classDef workspace fill:#059669,stroke:#6ee7b7,color:#fff,stroke-width:2px;
+  classDef outcome fill:#ea580c,stroke:#fdba74,color:#fff,stroke-width:2px;
+  classDef decision fill:#0f172a,stroke:#38bdf8,color:#fff,stroke-width:2px;
+
+  class START,HOME,SOLUTIONS,PLATFORM,DOCS,STATUS,CONTACT,CONTACT_OK public;
+  class LOGIN,CREATE,VERIFY,RECOVER,RESET,LOGIN_ERROR,REAUTH account;
+  class OVERVIEW,SELECT,SERVICES,SERVICE_DETAIL,DEPLOYMENTS,DEPLOY_DETAIL,DEPLOY_CREATE,DEPLOY_PROGRESS,MODELS,MODEL_DETAIL,ANALYTICS,REPORT_DETAIL,TOOLKIT,TOOL_RESULT,SETTINGS,PROFILE,MEMBERS,INTEGRATIONS,NOTIFICATIONS,DOCS_APP,DOC_DETAIL workspace;
+  class DEPLOY_SUCCESS,DEPLOY_FAILURE,INVITE outcome;
+  class AUTH_CHECK,WORKSPACE_CHECK,SESSION decision;
+```
+
+### 5.1 Public-to-account flow
+
+A visitor can browse Home, Solutions, Platform, Documentation, Status, and Contact without authentication. Any action requiring a workspace sends the visitor to Login while preserving the intended destination. For example, selecting a platform action should return the user to the Platform page or continue to the intended workspace destination after successful authentication.
+
+### 5.2 Login flow
+
+The Login page has four outcomes:
+
+| Outcome | Next page |
+|---|---|
+| Valid credentials and one workspace | Workspace Overview |
+| Valid credentials and multiple workspaces | Workspace Selection |
+| Valid credentials and no workspace | No Workspace / Invitation |
+| Invalid credentials | Login with an inline error |
+
+Login also links to Create Account and Forgot Password. Create Account leads to Verify Email, then returns to Login. Forgot Password leads through Reset Password and returns to Login.
+
+### 5.3 Workspace flow
+
+The Workspace Overview is the authenticated starting page. From there, the user can enter Services, Deployments, Models, Analytics, Toolkit, Documentation, or Settings. The workspace shell remains mounted while the content area changes, so navigation state, selected workspace, and global feedback remain consistent.
+
+The selected workspace must persist during navigation. If the session expires on any workspace page, show the Session Expired state, preserve the safe return path, and send the user through Login before returning them to that page.
+
+### 5.4 Deployment flow
+
+The deployment journey is the first complete operational flow to implement:
+
+```text
+Services -> Service Detail -> Create Deployment
+        -> Deployment Detail -> Deployment Progress
+        -> Success or Failure -> Deployment Detail
+```
+
+A deployment page must support loading, validation failure, pending, running, success, failure, cancellation, retry, and permission-denied states. The user must never be shown a successful deployment state until the API confirms it.
+
+### 5.5 Settings flow
+
+Settings is a parent page with focused subsections: Profile, Members and Access, Integrations, and Notifications. Each subsection must provide a clear return path to Settings and preserve the selected workspace. Sensitive changes should require explicit confirmation and display a completed, failed, or pending result state.
+
+### 5.6 Universal frontend states
+
+Every page-to-page transition must account for:
+
+- Loading the next route.
+- Invalid or missing route parameters.
+- Unsaved form changes.
+- Permission denied.
+- Expired session.
+- Network failure.
+- Empty data.
+- Successful completion.
+
+These are shared navigation behaviors, not feature-specific exceptions.
+
 ## 5. Feature-Based Frontend Structure
 
 Organize frontend code by capability rather than by page type:

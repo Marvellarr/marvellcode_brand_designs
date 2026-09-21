@@ -1,0 +1,52 @@
+flowchart LR
+  HOME[Home] --> PUBLIC[Solutions · Platform · Docs · Status · Contact]
+  PUBLIC --> LOGIN[Login]
+  LOGIN -->|valid| WORKSPACE[Workspace Overview]
+  LOGIN -->|invalid| LOGIN_ERROR[Login Error]
+  LOGIN_ERROR --> LOGIN
+  LOGIN --> CREATE[Create Account]
+  CREATE --> VERIFY[Verify Email]
+  VERIFY --> LOGIN
+  LOGIN --> RECOVER[Forgot Password]
+  RECOVER --> RESET[Reset Password]
+  RESET --> LOGIN
+  LOGIN --> SELECT[Select or Join Workspace]
+  SELECT --> WORKSPACE
+
+  WORKSPACE --> SERVICES[Services]
+  SERVICES --> SERVICE_DETAIL[Service Detail]
+  SERVICE_DETAIL --> CREATE_DEPLOY[Create Deployment]
+  CREATE_DEPLOY --> DEPLOY_DETAIL[Deployment Detail]
+  WORKSPACE --> DEPLOYMENTS[Deployments]
+  DEPLOYMENTS --> DEPLOY_DETAIL
+  DEPLOY_DETAIL --> PROGRESS[Deployment Progress]
+  PROGRESS --> SUCCESS[Success]
+  PROGRESS --> FAILURE[Failure / Retry]
+  SUCCESS --> DEPLOY_DETAIL
+  FAILURE --> DEPLOY_DETAIL
+
+  WORKSPACE --> MODELS[Models]
+  WORKSPACE --> ANALYTICS[Analytics]
+  WORKSPACE --> TOOLKIT[Toolkit]
+  WORKSPACE --> APP_DOCS[Workspace Docs]
+  WORKSPACE --> SETTINGS[Settings]
+  SETTINGS --> PROFILE[Profile]
+  SETTINGS --> MEMBERS[Members]
+  SETTINGS --> INTEGRATIONS[Integrations]
+  SETTINGS --> NOTIFICATIONS[Notifications]
+  PROFILE --> SETTINGS
+  MEMBERS --> SETTINGS
+  INTEGRATIONS --> SETTINGS
+  NOTIFICATIONS --> SETTINGS
+
+  WORKSPACE -. session expired .-> LOGIN
+
+  classDef public fill:#2563eb,stroke:#93c5fd,color:#fff,stroke-width:2px;
+  classDef account fill:#7c3aed,stroke:#c4b5fd,color:#fff,stroke-width:2px;
+  classDef workspace fill:#059669,stroke:#6ee7b7,color:#fff,stroke-width:2px;
+  classDef outcome fill:#ea580c,stroke:#fdba74,color:#fff,stroke-width:2px;
+
+  class HOME,PUBLIC public;
+  class LOGIN,LOGIN_ERROR,CREATE,VERIFY,RECOVER,RESET,SELECT account;
+  class WORKSPACE,SERVICES,SERVICE_DETAIL,CREATE_DEPLOY,DEPLOYMENTS,DEPLOY_DETAIL,PROGRESS,MODELS,ANALYTICS,TOOLKIT,APP_DOCS,SETTINGS,PROFILE,MEMBERS,INTEGRATIONS,NOTIFICATIONS workspace;
+  class SUCCESS,FAILURE outcome;
